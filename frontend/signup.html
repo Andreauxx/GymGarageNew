@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login | GymGarage</title>
+  <link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link rel="stylesheet" href="signup.css" />
+</head>
+
+<body>
+  <!-- Header Section -->
+  <header class="promo-header">
+    <div class="contact">
+      <a href="/contact">Contact Us</a>
+      <a href="#">Call Us!</a>
+      <a href="#">Get Quote</a>
+    </div>
+  </header>
+
+  <!-- Main Navigation -->
+  <nav class="main-nav">
+    <div class="logo">
+      <img src="Images/FinalLogo.png" alt="GymGarage Logo" />
+      <span class="logofont">GYMGARAGE</span>
+    </div>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="shop">Shop</a></li>
+      <li><a href="plans">Plans</a></li>
+      <li><a href="coaches">Coaches</a></li>
+      <li><a href="about">About Us</a></li>
+    </ul>
+  </nav>
+
+  <!-- Login Form Section -->
+  <main class="form-container">
+    <form class="auth-form">
+      <h2>Sign Up</h2>
+      <div class="input-container">
+        <label for="name">First Name</label>
+        <input type="text" id="f_name" placeholder="Your First Name" required />
+
+        <label for="name">Last Name</label>
+        <input type="text" id="l_name" placeholder="Your Last Name" required />
+
+        <label for="username">Username</label>
+        <input type="text" id="username" placeholder="Your Username" required />
+
+        <label for="address">Address</label>
+        <input type="text" id="address" placeholder="House/Bldg Number, Street, District, City" required />
+
+        <label for="Number">Phone Number</label>
+        <input type="number" id="number" placeholder="Phone Number" required />
+
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="Your Email" required />
+
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Your Password" required />
+
+        <label for="confirm_password">Password</label>
+        <input type="password" id="confirm_password" placeholder="Confirm Password" required />
+
+        <button type="submit" class="register">Register</button>
+      </div>
+    </form>
+  </main>
+
+  <!-- Footer Section -->
+  <footer>
+    <section class="footer">
+      <div class="footer-row">
+        <div class="footer-col">
+          <h4>Company Info</h4>
+          <ul class="links">
+            <li><a href="about">About Us</a></li>
+            <li><a href="contact">Contact Us</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="faq">FAQs</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul class="links">
+            <li><a href="#">Equipment Catalog</a></li>
+            <li><a href="#">Membership Plans</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Testimonials</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul class="links">
+            <li><a href="terms">Terms of Service</a></li>
+            <li><a href="cancel">Privacy Policy</a></li>
+            <li><a href="refund">Refund Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Newsletter</h4>
+          <p>
+            Subscribe for updates on new equipment, promotions, and fitness
+            tips.
+          </p>
+          <form action="#" method="POST">
+            <input type="email" placeholder="Your email" required="" />
+            <button type="submit">SUBSCRIBE</button>
+          </form>
+          <div class="icons">
+            <i class="fa-brands fa-facebook-f"></i>
+            <i class="fa-brands fa-twitter"></i>
+            <i class="fa-brands fa-linkedin"></i>
+            <i class="fa-brands fa-github"></i>
+          </div>
+        </div>
+      </div>
+    </section>
+  </footer>
+
+  <script>
+    document.querySelector('.auth-form').addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const f_name = document.getElementById('f_name').value;
+      const l_name = document.getElementById('l_name').value;
+      const username = document.getElementById('username').value;
+      const address = document.getElementById('address').value;
+      const number = document.getElementById('number').value;
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      try {
+        const response = await fetch('/api/signup', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ f_name, l_name, username, address, number, email, password }),
+        });
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.message || 'Signup failed');
+        }
+
+        const data = await response.json();
+        alert('Signup successful');
+        localStorage.setItem('token', data.token);
+        window.location.href = '/home';
+      } catch (error) {
+        console.error('Error during signup:', error);
+        alert(error.message || 'An error occurred during signup.');
+      }
+    });
+
+
+  </script>
+
+
+
+
+
+
+  <!-- Load authdisplay.js with updated path -->
+  <script src="frontend/frontend_display_logics/authdisplay.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,432 @@
+/* General Reset */
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .michroma-regular {
+    font-family: "Michroma", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+  }
+  
+  /* Promo Header */
+  .promo-header {
+    background-color: #ff0000;
+    color: white;
+    text-align: center;
+    padding: 10px;
+  }
+  
+  /* Main Navigation */
+  .main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: black;
+  }
+  
+  .logo img {
+    width: 100px;
+  }
+  
+  .main-nav ul {
+    display: flex;
+    list-style: none;
+  }
+  
+  .main-nav ul li {
+    margin: 0 20px;
+  }
+  
+  .main-nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-family: "Michroma", sans-serif;
+  }
+  
+  .main-nav ul li a:hover {
+    color: red;
+  }
+  
+  .logofont {
+    font-family: Impact;
+    color: white;
+    font-size: 24px;
+  }
+  
+  /* Login Form */
+  .form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+  }
+  
+  .auth-form {
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    height: 480px;
+    display: flex;
+    flex-flow: column;
+  }
+  
+  .auth-form h2 {
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 50px 0px;
+    text-align: center;
+    font-family: Impact;
+    font-size: 36px;
+    color: red;
+  }
+  
+  .auth-form label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+  
+  .auth-form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+  }
+  
+  .auth-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .auth-form button:hover {
+    background-color: darkred;
+  }
+  
+  .auth-form p {
+    text-align: center;
+  }
+  
+  .auth-form a {
+    color: red;
+    text-decoration: none;
+  }
+  
+  .auth-form a:hover {
+    text-decoration: underline;
+  }
+
+  .input-container {
+    display: flex;
+    flex-flow: column;
+    flex-grow: 1;
+  }
+
+  .input-container input {
+    margin-bottom: 30px;
+  }
+  
+
+/* User Info Section Styling */
+#user-info {
+  background-color: rgb(0, 0, 0);
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 600px;
+  text-align: center;
+  margin-top: 20px;
+  transition: transform 0.3s ease; /* Subtle animation on hover */
+}
+
+#user-info:hover {
+  transform: scale(1.02); /* Slightly enlarges the section on hover */
+}
+
+#user-info h2 {
+  font-family: "Michroma", sans-serif;
+  font-size: 28px;
+  color: red;
+  margin-bottom: 20px;
+}
+
+#user-info p {
+  font-size: 16px;
+  color: #333;
+  margin-top: 10px;
+}
+
+#user-info a {
+  font-family: "Michroma", sans-serif;
+  color: white;
+  background-color: red;
+  text-decoration: none;
+  font-weight: bold;
+  margin: 0 10px;
+  padding: 10px 20px;
+  border-radius: 20px; /* Rounded corners */
+  display: inline-block;
+  flex-direction: row;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#username-display{
+  font-family: "Michroma", sans-serif;
+  color: white;
+  font-size: 25px;
+}
+
+
+#user-info a:hover {
+  background-color: darkred;
+  color: #fff;
+}
+
+/* Additional styling for the "View Profile" and "Logout" buttons */
+#user-info #logout-link,
+#user-info a[href="/profile"] {
+  background-color: #ff3333;
+  padding: 10px 25px;
+  border-radius: 30px; /* Extra rounded buttons */
+  font-size: 14px;
+}
+
+#user-info #logout-link:hover,
+#user-info a[href="/profile"]:hover {
+  background-color: darkred;
+  color: white;
+  text-decoration: none;
+}
+
+
+#order-history {
+  margin-top: 30px;
+  text-align: left;
+  color: white;
+  max-width: 80%; /* Increase the width to take up more space */
+  height: 350px; /* Set a fixed height */
+  overflow-y: auto; /* Make it scrollable vertically */
+  margin-left: auto; 
+  margin-right: auto; 
+}
+
+#order-history h3 {
+  font-size: 24px;
+  color: red;
+  margin-bottom: 20px;
+  font-family: 'Michroma', sans-serif;
+  text-align: center;
+}
+
+.order {
+  background-color: #979797;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-left: 5px solid red;
+  margin-bottom: 15px;
+  font-family: 'Open Sans', sans-serif;
+  transition: transform 0.3s ease;
+}
+
+.order:hover {
+  transform: scale(1.02); /* Slight hover effect */
+}
+
+.order p {
+  font-size: 16px;
+  color: #ddd;
+  margin: 5px 0;
+}
+
+.order-items p {
+  margin: 5px 0;
+}
+
+.btn-complete {
+  background-color: #f80000;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-complete:hover {
+  background-color: darkred;
+}
+
+#orders-container::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+}
+
+#orders-container::-webkit-scrollbar-thumb {
+  background-color: #555; /* Color of the scrollbar thumb */
+  border-radius: 4px; /* Rounder edges */
+}
+
+#orders-container::-webkit-scrollbar-thumb:hover {
+  background-color: #f80000; /* Change color when hovered */
+}
+
+@keyframes fadeIn {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.status {
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+}
+
+.status.pending {
+  background-color: orange;
+}
+
+.status.completed {
+  background-color: green;
+}
+
+.status.cancelled {
+  background-color: red;
+}
+
+
+
+/* Importing Google font - Open Sans */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.footer {
+  position: relative; 
+  max-width: auto;
+  width: 100%;
+  margin: auto; 
+  background: #000000;
+  padding: 50px 50px ; 
+}
+
+.footer .footer-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-right: 70px;
+  padding-left: 70px;
+  gap: 3.5rem;
+}
+
+.footer-row .footer-col h4 {
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+.footer-col .links {
+  margin-top: 20px;
+}
+
+.footer-col .links li {
+  list-style: none;
+  margin-bottom: 10px;
+}
+
+.footer-col .links li a {
+  text-decoration: none;
+  color: #bfbfbf;
+}
+
+.footer-col .links li a:hover {
+  color: red;
+}
+
+.footer-col p {
+  margin: 20px 0;
+  color: #bfbfbf;
+  max-width: 300px;
+}
+
+.footer-col form {
+  display: flex;
+  gap: 5px;
+}
+
+.footer-col input {
+  height: 40px;
+  border-radius: 6px;
+  background: none;
+  width: 100%;
+  outline: none;
+  border: 1px solid red;
+  caret-color: #fff;
+  color: #fff;
+  padding-left: 10px;
+}
+
+.footer-col input::placeholder {
+  color: #ccc;
+}
+
+.footer-col form button {
+  background: #fff;
+  outline: none;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.2s ease;
+}
+
+.footer-col form button:hover {
+  background: #f80000;
+}
+
+.footer-col .icons {
+  display: flex;
+  margin-top: 30px;
+  gap: 30px;
+  cursor: pointer;
+}
+
+.footer-col .icons i {
+  color: #afb6c7;
+  font-size: 1.2rem; /* Slightly increase icon size */
+  transition: transform 0.5s ease, color 0.5s ease; /* Smooth transition for both color and rotation */
+}
+
+.footer-col .icons i:hover {
+  color: #f80000;
+  transform: rotate(360deg); /* Use rotate instead of rotate3d for simplicity */
+}
+/*End of Footer Styling */

@@ -1,0 +1,404 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+}
+
+/* Promo Header */
+.promo-header {
+  background-color: #ff0000;
+  color: white;
+  text-align: center;
+  padding: 10px;
+}
+
+/* Main Navigation */
+.main-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background-color: black;
+}
+
+.logo img {
+  width: 100px;
+}
+
+.main-nav ul {
+  display: flex;
+  list-style: none;
+}
+
+.main-nav ul li {
+  margin: 0 20px;
+}
+
+.main-nav ul li a {
+  text-decoration: none;
+  color: white;
+  font-family: "Michroma", sans-serif;
+}
+
+.main-nav ul li a:hover {
+  color: red;
+}
+
+.logofont {
+  font-family: Impact;
+  color: white;
+  font-size: 24px;
+}
+
+.cart-counter {
+  background-color: #ff0000; /* Red background for visibility */
+  color: #fff;
+  font-size: 0.9rem;
+  padding: 2px 6px;
+  border-radius: 50%;
+  margin-left: 5px;
+}
+
+/* Shop Container */
+.shop-container {
+  padding: 50px;
+  text-align: center;
+}
+
+.shop-container h1 {
+  font-size: 48px;
+}
+
+.shop-container .highlight {
+  color: red;
+}
+
+/* Search Bar */
+.search-bar {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.search-bar input {
+  padding: 10px;
+  width: 400px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+.search-bar button {
+  padding: 10px;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.search-bar button:hover {
+  background-color: darkred;
+}
+
+/* Filters Section */
+.filters-container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.filter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.filter label {
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.filter input,
+.filter select {
+  padding: 10px;
+  width: 150px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+.filter-button {
+  padding: 10px 20px;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.filter-button:hover {
+  background-color: darkred;
+}
+
+/* Products Grid */
+.product-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.product-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  width: 270px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  position: relative;
+}
+
+.product-card img {
+  width: 100%; /* Ensures the image takes up the full width of its container */
+  height: 200px; /* Set a fixed height for all product images */
+  object-fit: cover; /* Ensures the image covers the area while maintaining aspect ratio */
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.product-card h2 {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.product-card .price-section {
+  color: red;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.product-card .discounted-price {
+  color: red;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.product-card .original-price {
+  text-decoration: line-through;
+  font-size: 14px;
+  color: grey;
+}
+
+.product-card button {
+  background-color: #ff0000;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  display: block;
+  width: 100%;
+}
+
+.product-card button:hover {
+  background-color: darkred;
+  transform: translateY(-3px);
+}
+
+.product-card .save-banner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: red;
+  color: white;
+  padding: 5px 10px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+
+
+/* Importing Google font - Open Sans */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.footer {
+  position: relative; 
+  max-width: auto;
+  width: 100%;
+  margin: auto; 
+  background: #000000;
+  padding: 50px 50px ; 
+}
+
+.footer .footer-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-right: 70px;
+  padding-left: 70px;
+  gap: 3.5rem;
+}
+
+.footer-row .footer-col h4 {
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+.footer-col .links {
+  margin-top: 20px;
+}
+
+.footer-col .links li {
+  list-style: none;
+  margin-bottom: 10px;
+}
+
+.footer-col .links li a {
+  text-decoration: none;
+  color: #bfbfbf;
+}
+
+.footer-col .links li a:hover {
+  color: red;
+}
+
+.footer-col p {
+  margin: 20px 0;
+  color: #bfbfbf;
+  max-width: 300px;
+}
+
+.footer-col form {
+  display: flex;
+  gap: 5px;
+}
+
+.footer-col input {
+  height: 40px;
+  border-radius: 6px;
+  background: none;
+  width: 100%;
+  outline: none;
+  border: 1px solid red;
+  caret-color: #fff;
+  color: #fff;
+  padding-left: 10px;
+}
+
+.footer-col input::placeholder {
+  color: #ccc;
+}
+
+.footer-col form button {
+  background: #fff;
+  outline: none;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.2s ease;
+}
+
+.footer-col form button:hover {
+  background: #f80000;
+}
+
+.footer-col .icons {
+  display: flex;
+  margin-top: 30px;
+  gap: 30px;
+  cursor: pointer;
+}
+
+.footer-col .icons i {
+  color: #afb6c7;
+  font-size: 1.2rem; /* Slightly increase icon size */
+  transition: transform 0.5s ease, color 0.5s ease; /* Smooth transition for both color and rotation */
+}
+
+.footer-col .icons i:hover {
+  color: #f80000;
+  transform: rotate(360deg); /* Use rotate instead of rotate3d for simplicity */
+}
+/*End of Footer Styling */
+
+/* Modal styling */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1000; /* Sits on top of other elements */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  background-color: rgba(0, 0, 0, 0.5); /* Black background with transparency */
+}
+
+.modal-content {
+  background-color: white;
+  margin: 15% auto; /* Vertically center the modal */
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px; /* Width of the modal */
+  text-align: center;
+}
+
+.close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  color: #aaa;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+}
+
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  padding: 10px 20px;
+  margin: 0 5px;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.pagination button:disabled {
+  background-color: gray;
+  cursor: not-allowed;
+}
+
+.pagination span {
+  font-size: 18px;
+  margin: 0 10px;
+}

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout | GymGarage</title>
+    <link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="checkoutstyles.css" />
+  </head>
+  <body>
+    <!-- Header Section -->
+    <header class="promo-header">
+      <div class="contact">
+        <a href="contact">Contact Us</a>
+        <a href="#">Call Us!</a>
+        <a href="#">Get Quote</a>
+      </div>
+    </header>
+
+    <!-- Main Navigation -->
+    <nav class="main-nav" aria-label="Main Navigation">
+      <div class="logo">
+        <img src="Images/FinalLogo.png" alt="GymGarage Logo" />
+        <span class="logofont">GYMGARAGE</span>
+      </div>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="shop">Shop</a></li>
+        <li><a href="plans">Plans</a></li>
+        <li><a href="coaches">Coaches</a></li>
+        <li><a href="about">About Us</a></li>
+      </ul>
+    </nav>
+
+    <!-- Checkout Form -->
+    <main class="checkout-container">
+      <h1>Checkout</h1>
+
+      <!-- Invoice Section -->
+      <section id="invoice" class="invoice-section">
+        <h2>Invoice</h2>
+        <table class="invoice-table">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Subtotal</th>
+            </tr>
+          </thead>
+          <tbody id="invoice-items">
+            <!-- Items will be dynamically inserted here -->
+          </tbody>
+        </table>
+        <div class="invoice-total">
+          <p><strong>Total: ₱<span id="invoice-total">0.00</span></strong></p>
+        </div>
+      </section>
+
+      <!-- User Details -->
+      <form id="checkout-form" class="checkout-form" aria-label="Checkout Form">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" placeholder="Full Name" required />
+        </div>
+
+        <div class="form-group">
+          <label for="address">Address</label>
+          <input type="text" id="address" placeholder="Delivery Address" required />
+        </div>
+
+        <div class="form-group">
+          <label for="payment">Payment Method</label>
+          <select id="payment" required>
+            <option value="credit-card">Credit Card</option>
+            <option value="paypal">PayPal</option>
+            <option value="e-wallet">E-Wallet</option>
+          </select>
+        </div>
+
+        <div class="form-group card-details" id="card-details">
+          <label for="card">Card Number</label>
+          <input type="text" id="card" placeholder="Card Number" required />
+        </div>
+
+        <div class="form-group expiry-details" id="expiry-details">
+          <label for="expiry">Expiry Date</label>
+          <input type="text" id="expiry" placeholder="MM/YY" required />
+        </div>
+
+        <div class="form-group cvc-details" id="cvc-details">
+          <label for="cvc">CVC</label>
+          <input type="text" id="cvc" placeholder="CVC" required />
+        </div>
+
+        <button type="submit" class="btn-order">Place Order</button>
+        <button type="button" class="btn-cancel" onclick="cancelCheckout()">Cancel</button>
+      </form>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+      <section class="footer">
+        <div class="footer-row">
+          <div class="footer-col">
+            <h4>Company Info</h4>
+            <ul class="links">
+              <li><a href="about">About Us</a></li>
+              <li><a href="contact">Contact Us</a></li>
+              <li><a href="#">Careers</a></li>
+              <li><a href="faq">FAQs</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Explore</h4>
+            <ul class="links">
+              <li><a href="#">Equipment Catalog</a></li>
+              <li><a href="#">Membership Plans</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Testimonials</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Legal</h4>
+            <ul class="links">
+              <li><a href="terms">Terms of Service</a></li>
+              <li><a href="cancel">Privacy Policy</a></li>
+              <li><a href="refund">Refund Policy</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Newsletter</h4>
+            <p>
+              Subscribe for updates on new equipment, promotions, and fitness
+              tips.
+            </p>
+            <form action="#" method="POST">
+              <input type="email" placeholder="Your email" required="" />
+              <button type="submit">SUBSCRIBE</button>
+            </form>
+            <div class="icons">
+              <i class="fa-brands fa-facebook-f"></i>
+              <i class="fa-brands fa-twitter"></i>
+              <i class="fa-brands fa-linkedin"></i>
+              <i class="fa-brands fa-github"></i>
+            </div>
+          </div>
+        </div>
+      </section>
+    </footer>
+
+    <!-- Load authdisplay.js -->
+    <script src="frontend/frontend_display_logics/authdisplay.js" type="module"></script>
+
+    <!-- Checkout and Cart Logic -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const checkoutForm = document.getElementById("checkout-form");
+
+        // Load invoice items on page load
+        loadInvoice();
+
+        checkoutForm.addEventListener("submit", async (event) => {
+          event.preventDefault();
+
+          const name = document.getElementById("name").value;
+          const address = document.getElementById("address").value;
+          const paymentMethod = document.getElementById("payment").value;
+
+          if (!name || !address || !paymentMethod) {
+            alert("Please fill out all required fields.");
+            return;
+          }
+
+          if (paymentMethod === "credit-card") {
+            const card = document.getElementById("card").value;
+            const expiry = document.getElementById("expiry").value;
+            const cvc = document.getElementById("cvc").value;
+
+            if (!card || !expiry || !cvc) {
+              alert("Please fill out your credit card details.");
+              return;
+            }
+          }
+
+          await proceedToCheckout();
+        });
+      });
+
+      async function loadInvoice() {
+        console.log("Loading invoice...");
+        try {
+          const response = await fetch("/api/cart", { credentials: "include" });
+          if (!response.ok) throw new Error("Failed to fetch cart items");
+
+          const cartItems = await response.json();
+          const invoiceItems = document.getElementById("invoice-items");
+          const invoiceTotal = document.getElementById("invoice-total");
+
+          let total = 0;
+          invoiceItems.innerHTML = ""; // Clear previous items
+          
+          cartItems.forEach((item) => {
+            const productPrice = item.products.discounted_price || item.products.original_price;
+            const subtotal = productPrice * item.quantity;
+            total += subtotal;
+
+            invoiceItems.innerHTML += `
+              <tr>
+                <td>${item.products.name}</td>
+                <td>₱${productPrice.toFixed(2)}</td>
+                <td>${item.quantity}</td>
+                <td>₱${subtotal.toFixed(2)}</td>
+              </tr>
+            `;
+          });
+
+          invoiceTotal.textContent = total.toFixed(2);
+        } catch (error) {
+          console.error("Error loading invoice:", error);
+        }
+      }
+
+      async function proceedToCheckout() {
+        console.log("Attempting checkout...");
+        try {
+          const response = await fetch("/api/checkout", {
+            method: "POST",
+            credentials: "include",
+          });
+          if (response.ok) {
+            const { message, orderId } = await response.json();
+            alert(message);
+            window.location.href = `/home?order=${orderId}`;
+          } else {
+            const { message } = await response.json();
+            alert(message || "Checkout failed.");
+          }
+        } catch (error) {
+          console.error("Checkout error:", error);
+          alert("An error occurred during checkout.");
+        }
+      }
+    </script>
+
+    
+  </body>
+</html>

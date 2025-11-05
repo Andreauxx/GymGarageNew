@@ -1,0 +1,363 @@
+/* cartstyle.css */
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+  }
+  
+  /* Promo Header */
+  .promo-header {
+    background-color: #ff0000;
+    color: white;
+    text-align: center;
+    padding: 10px;
+  }
+/* Main Navigation */
+.main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: black;
+  }
+  
+  .logo img {
+    width: 100px;
+  }
+  
+  .main-nav ul {
+    display: flex;
+    list-style: none;
+  }
+  
+  .main-nav ul li {
+    margin: 0 20px;
+  }
+  
+  .main-nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-family: "Michroma", sans-serif;
+  }
+  
+  .main-nav ul li a:hover {
+    color: red;
+  }
+  
+  .logofont {
+    font-family: Impact;
+    color: white;
+    font-size: 24px;
+  }
+  
+  .cart-counter {
+    background-color: #ff0000; /* Red background for visibility */
+    color: #fff;
+    font-size: 0.9rem;
+    padding: 2px 6px;
+    border-radius: 50%;
+    margin-left: 5px;
+  }
+  
+/* Cart Container */
+.cart-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.cart-container h1 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.cart-content {
+    display: flex;
+    gap: 20px;
+}
+
+/* Cart Table */
+.styled-table {
+    width: 70%;
+    border-collapse: collapse;
+}
+.styled-table thead th {
+    background-color: #a00000;
+    color: white;
+    padding: 15px;
+    font-weight: bold;
+}
+.styled-table tbody td {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+}
+.styled-table td input[type="number"] {
+    width: 60px;
+    padding: 5px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+.product-image {
+    width: 50px;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+.action-btn.delete {
+    background-color: #d9534f;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.action-btn.delete:hover {
+    background-color: #c9302c;
+}
+
+/* Summary Section */
+.cart-summary {
+    width: 30%;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.cart-summary h2 {
+    margin-bottom: 10px;
+}
+.summary-detail, .summary-total {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+.checkout-btn {
+    width: 100%;
+    background-color: #28a745;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
+    border-radius: 4px;
+}
+.checkout-btn:hover {
+    background-color: #218838;
+}
+
+
+
+
+/* Tabs Section */
+.product-tabs {
+    margin-top: 20px;
+  }
+  
+  .tabs {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .tab {
+    background-color: #f4f4f4;
+    border: 1px solid #ccc;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .tab.active {
+    background-color: #fff;
+    border-bottom: none;
+    font-weight: bold;
+  }
+  
+  .tab-content {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+  }
+  
+  .tab-pane {
+    display: none;
+  }
+  
+  .tab-pane.active {
+    display: block;
+  }
+  
+  /* Related Products Section */
+  .related-products {
+    margin-top: 40px;
+  }
+  
+  .related-products h2 {
+    margin-bottom: 20px;
+  }
+  
+  .related-products-grid {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .related-product-card {
+    width: 200px;
+    text-align: center;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #fff;
+  }
+  
+  .related-product-card img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .related-price {
+    color: red;
+    font-weight: bold;
+  }
+  
+  
+  /* Improve button styles */
+  .action-buttons button {
+    padding: 10px 15px;
+    margin-right: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  .add-to-cart {
+    background-color: #ff4500;
+    color: white;
+  }
+  
+  .buy-now-btn {
+    background-color: black;
+    color: white;
+  }
+  
+
+/* Footer */
+
+/* Importing Google font - Open Sans */
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
+}
+
+.footer {
+  position: relative;
+  max-width: auto;
+  width: 100%;
+  margin: auto;
+  background: #000000;
+  padding: 50px 50px;
+}
+
+.footer .footer-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 3.5rem;
+}
+
+.footer-row .footer-col h4 {
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+.footer-col .links {
+  margin-top: 20px;
+}
+
+.footer-col .links li {
+  list-style: none;
+  margin-bottom: 10px;
+}
+
+.footer-col .links li a {
+  text-decoration: none;
+  color: #bfbfbf;
+}
+
+.footer-col .links li a:hover {
+  color: #ec0a0a;
+  transform: scale(1.2);
+}
+
+.footer-col p {
+  margin: 20px 0;
+  color: #bfbfbf;
+  max-width: 300px;
+}
+
+.footer-col form {
+  display: flex;
+  gap: 5px;
+}
+
+.footer-col input {
+  height: 40px;
+  border-radius: 6px;
+  background: none;
+  width: 100%;
+  outline: none;
+  border: 1px solid #ee1000;
+  caret-color: #fff;
+  color: #fff;
+  padding-left: 10px;
+}
+
+.footer-col input::placeholder {
+  color: #ccc;
+}
+
+.footer-col form button {
+  background: #fff;
+  outline: none;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.2s ease;
+}
+
+.footer-col form button:hover {
+  background: #cecccc;
+}
+
+.footer-col .icons {
+  display: flex;
+  margin-top: 30px;
+  gap: 30px;
+  cursor: pointer;
+}
+
+.footer-col .icons i {
+  color: #afb6c7;
+  font-size: 1.2rem; /* Slightly increase icon size */
+  transition: transform 0.5s ease, color 0.5s ease; /* Smooth transition for both color and rotation */
+}
+
+.footer-col .icons i:hover {
+  color: #f80000;
+  transform: rotate(360deg); /* Use rotate instead of rotate3d for simplicity */
+}

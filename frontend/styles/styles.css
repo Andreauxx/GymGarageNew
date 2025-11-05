@@ -1,0 +1,552 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .michroma-regular {
+    font-family: "Michroma", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  h1 {
+    font-family: Impact;
+    font-size: 200px;
+    font-weight: 10;
+    text-shadow: 5px 5px #000000;
+  }
+  
+  .highlight {
+    color: red; 
+    font-family: Impact; 
+    text-shadow: 5px 5px #000000;
+  }
+  
+  
+  .logofont{
+    font-family: Impact;
+    font-size: 2rem;
+  }
+  
+
+  
+  .promo-header {
+    background-color: #ff0000;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+  align-items: flex-end;
+  }
+  
+  
+
+/* Adjust header styles */
+header {
+  width: 100%;
+  background-color: transparent;
+  color: #fff;
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  z-index: 2; 
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  width: 100px;
+  margin-right: 10px;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  width: 100%;
+  justify-content: space-between; /* Space out nav-center and nav-right */
+}
+
+.nav-center {
+  display: flex;
+  justify-content: space-between;
+  flex-grow: 1; /* Ensures this section stays in the center */
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.nav-center li {
+  margin: 0 10px; /* Add horizontal space between links */
+}
+
+
+.nav-right {
+  display: flex;
+  align-items: center;
+}
+
+.nav-right li {
+  margin-left: 20px; /* Spacing between cart, log in, and sign up */
+}
+
+nav ul li a {
+  font-family: "Michroma", sans-serif;
+  text-decoration: none;
+  color: white;
+  transition: background-color 0.3s ease, transform 0.2s ease; 
+  display: inline-block;
+}
+
+nav ul li a:hover {
+  color: red;
+  transform: scale(1.2); /* Combine the transformations */
+  transform: translateY(-3px);
+}
+
+/* Cart icon styling */
+nav ul li i {
+  margin-right: 5px; /* Adjust spacing between the icon and the text */
+  font-size: 1.2rem;
+}
+
+/* Cart counter styling */
+.cart-counter {
+  background-color: #ff0000; /* Red background for visibility */
+  color: #fff;
+  font-size: 0.9rem;
+  padding: 2px 6px;
+  border-radius: 50%;
+  margin-left: 5px;
+}
+
+.contact a {
+  margin-left: 15px;
+  color: white;
+  text-decoration: none;
+}
+
+.custom-line {
+  display: block; /* Ensures the line starts on a new line */
+  width: 100%;
+  height: 2px;
+  background-color: white;
+  box-sizing: border-box; /* Ensures the border is included in the width */
+}
+
+/* End of header Styles */
+
+
+
+  
+  
+  
+  .hero-section {
+    position: relative;
+    background-image: url("https://thereadystate.com/wp-content/uploads/2021/03/101-and-102-Landing-Page-Background.jpg"); 
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    z-index: 1; 
+  }
+  
+  .hero-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom right,rgba(0, 0, 0, 0.856), rgba(0, 0, 0, 0.849), rgba(0, 0, 0, 0.979));
+    z-index: -1; 
+  }
+  
+  .hero-section h1, .hero-section .cta-buttons {
+    position: relative;
+    z-index: 3; 
+  }
+  
+  .cta-buttons {
+    margin-top: 20px;
+  }
+  
+  .btn {
+    max-width: 200px;
+    width: 150px;
+    background-color: red; 
+    padding: 15px 30px;
+    text-decoration: none;
+    color: white;
+    
+    margin: 0 10px;
+    border-radius: 5px;
+    font-size: 1.2em;
+    transition: background-color 0.3s ease, transform 0.6s ease; 
+    display: inline-block; 
+  }
+  
+  .btn:hover {
+    background: black;
+      transform: translateY(-6px);
+    }
+  
+  /* Cart icon styling */
+  nav ul li i {
+    margin-right: 5px; /* Adjust spacing between the icon and the text */
+    font-size: 1.2rem;
+  }
+  
+  /* Cart counter styling */
+  .cart-counter {
+    background-color: #ff0000; /* Red background for visibility */
+    color: #fff;
+    font-size: 0.9rem;
+    padding: 2px 6px;
+    border-radius: 50%;
+    margin-left: 5px;
+  }
+  /* Plans Section */
+  
+  .plans-section {
+    text-align: center;
+    padding: 50px 20px;
+    border-radius: 10px; 
+    box-shadow: 0 4px 10px rgba(1, 1, 1, 0.1); 
+}
+
+  .plans-section h1 {
+    font-size: 48px; /* Adjusted from 200px to 48px for better readability */
+    line-height: 1.2; /* Adjust line height for better spacing */
+}
+
+.plans-section p {
+    font-family: 'Michroma', sans-serif;
+    font-size: 20px;
+    line-height: 1.2; /* Adjust line height for better spacing */
+}
+
+.plan-card h2 {
+    font-family: 'Michroma', sans-serif;
+    color: #2d3142;
+    font-size: 22px; /* Slightly reduced font size for plan titles */
+    margin-bottom: 10px;
+}
+
+/* Additional styling for better visual appeal */
+.plans-section .description {
+    font-size: 18px; /* Increased size for better visibility */
+    color: #fcf4f4; /* Slightly darker color for contrast */
+    margin-bottom: 30px; /* Add spacing below the description */
+}
+
+  
+  .plans-section .highlight {
+    color: #e63946;
+  }
+  
+  .plans-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+  }
+  
+  .plan-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    width: 300px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .plan-card:hover {
+    transform: translateY(-10px);
+    transform: scale(1.02);
+  }
+  
+  .plan-card h2 {
+    font-family: 'Michroma', sans-serif;
+    color: #2d3142;
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .plan-card .price {
+    font-size: 20px;
+    color: #e63946;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  
+  .plan-card .access {
+    font-size: 16px;
+    color: #2d3142;
+    margin-bottom: 20px;
+  }
+  
+  .plan-card .features {
+    list-style: none;
+    padding: 0;
+    color: #555;
+    font-size: 14px;
+    line-height: 1.8;
+    text-align: left;
+  }
+  
+  .plan-card .features li {
+    margin-bottom: 10px;
+  }
+  
+  /* Plan Specific Styles */
+  .basic-plan {
+    border-left: 4px solid #43aa8b;
+  }
+  
+  .premium-plan {
+    border-left: 4px solid #f8961e;
+  }
+  
+  .elite-plan {
+    border-left: 4px solid #e63946;
+  }
+  
+  /* Responsive adjustments */
+  @media screen and (max-width: 768px) {
+    .plans-container {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .plan-card {
+      width: 100%;
+      max-width: 400px;
+    }
+  }
+  
+
+
+
+  .trainers-section {
+    text-align: center;
+    background-color: transparent;
+    padding: 50px 20px;
+    color: #fff;
+    background-blend-mode: darken;
+  }
+  
+  .trainers-section h1 {
+    font-size: 2.5rem;
+  }
+  
+  .trainers-section .highlight {
+    color: red;
+    text-shadow: 2px 3px 5px rgb(0, 0, 0);
+  }
+  
+  .trainers-section .description {
+    font-size: 1rem;
+    color: #bbb;
+    margin-bottom: 40px;
+  }
+  
+  /* Flexbox container for trainer cards */
+  .trainers-container {
+    display: flex;
+    justify-content: space-around;
+    gap: 30px;
+    flex-wrap: wrap;
+  }
+  
+  /* Trainer card styling */
+  .trainer-card {
+    background-color: #161515;
+    border: 2px solid transparent;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 250px;
+    transition: border-color 0.3s ease;
+  }
+  
+  .trainer-card:hover {
+    border-color: red;
+  }
+  
+  .trainer-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  
+  .trainer-card h2 {
+    margin: 15px 0;
+    font-size: 1.5rem;
+  }
+  
+  .trainer-card .role {
+    font-size: 0.9rem;
+    color: #999;
+  }
+  
+  .trainer-card .stars {
+    color: gold;
+    font-size: 1.2rem;
+    margin-top: 10px;
+  }
+  
+  /* Responsive for smaller devices */
+  @media (max-width: 768px) {
+    .trainers-container {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Importing Google font - Open Sans */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.footer {
+  position: relative; 
+  max-width: auto;
+  width: 100%;
+  margin: auto; 
+  background: #000000;
+  padding: 50px 50px ; 
+}
+
+.footer .footer-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-right: 70px;
+  padding-left: 70px;
+  gap: 3.5rem;
+}
+
+.footer-row .footer-col h4 {
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+.footer-col .links {
+  margin-top: 20px;
+}
+
+.footer-col .links li {
+  list-style: none;
+  margin-bottom: 10px;
+}
+
+.footer-col .links li a {
+  text-decoration: none;
+  color: #bfbfbf;
+}
+
+.footer-col .links li a:hover {
+  color: red;
+}
+
+.footer-col p {
+  margin: 20px 0;
+  color: #bfbfbf;
+  max-width: 300px;
+}
+
+.footer-col form {
+  display: flex;
+  gap: 5px;
+}
+
+.footer-col input {
+  height: 40px;
+  border-radius: 6px;
+  background: none;
+  width: 100%;
+  outline: none;
+  border: 1px solid red;
+  caret-color: #fff;
+  color: #fff;
+  padding-left: 10px;
+}
+
+.footer-col input::placeholder {
+  color: #ccc;
+}
+
+.footer-col form button {
+  background: #fff;
+  outline: none;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.2s ease;
+}
+
+.footer-col form button:hover {
+  background: #f80000;
+}
+
+.footer-col .icons {
+  display: flex;
+  margin-top: 30px;
+  gap: 30px;
+  cursor: pointer;
+}
+
+.footer-col .icons i {
+  color: #afb6c7;
+  font-size: 1.2rem; /* Slightly increase icon size */
+  transition: transform 0.5s ease, color 0.5s ease; /* Smooth transition for both color and rotation */
+}
+
+.footer-col .icons i:hover {
+  color: #f80000;
+  transform: rotate(360deg); /* Use rotate instead of rotate3d for simplicity */
+}
+/*End of Footer Styling */

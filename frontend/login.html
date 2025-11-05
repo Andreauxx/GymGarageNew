@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login | GymGarage</title>
+  <link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="loginstyles.css" />
+</head>
+
+<body>
+  <!-- Header Section -->
+  <header class="promo-header">
+    <div class="contact">
+      <a href="/contact">Contact Us</a>
+      <a href="#">Call Us!</a>
+      <a href="#">Get Quote</a>
+    </div>
+  </header>
+
+  <!-- Main Navigation -->
+  <nav class="main-nav">
+    <div class="logo">
+      <img src="Images/FinalLogo.png" alt="GymGarage Logo" />
+      <span class="logofont">GYMGARAGE</span>
+    </div>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="shop">Shop</a></li>
+      <li><a href="plans">Plans</a></li>
+      <li><a href="coaches">Coaches</a></li>
+      <li><a href="about">About Us</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="form-container">
+    <!-- This container will display either the login form or the user info -->
+    <div id="auth-content">
+      <!-- Login form (initially displayed if user is not logged in) -->
+      <form class="auth-form" id="login-form">
+        <h2>Login</h2>
+        <div class="input-container">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="Your Email" required />
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="Your Password" required />
+          <button type="submit" class="btn">Login</button>
+        </div>
+        <p>Don’t have an account? <a href="/signup">Sign up here</a></p>
+      </form>
+
+      <!-- Logged-in user info (hidden initially) -->
+      <div id="user-info" style="display: none">
+        <h2>Welcome, <span id="username-display"></span>!</h2>
+        <p><a href="#" id="logout-link">Logout</a></p>
+
+        <!-- Order History Section -->
+        <section id="order-history">
+          <h3>Your Order History</h3>
+          <div id="orders-container">
+            <p>Loading your order history...</p>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <section class="footer">
+      <div class="footer-row">
+        <div class="footer-col">
+          <h4>Company Info</h4>
+          <ul class="links">
+            <li><a href="about">About Us</a></li>
+            <li><a href="contact">Contact Us</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="faq">FAQs</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul class="links">
+            <li><a href="#">Equipment Catalog</a></li>
+            <li><a href="#">Membership Plans</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Testimonials</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul class="links">
+            <li><a href="terms">Terms of Service</a></li>
+            <li><a href="cancel">Privacy Policy</a></li>
+            <li><a href="refund">Refund Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Newsletter</h4>
+          <p>
+            Subscribe for updates on new equipment, promotions, and fitness
+            tips.
+          </p>
+          <form action="#" method="POST">
+            <input type="email" placeholder="Your email" required="" />
+            <button type="submit">SUBSCRIBE</button>
+          </form>
+          <div class="icons">
+            <i class="fa-brands fa-facebook-f"></i>
+            <i class="fa-brands fa-twitter"></i>
+            <i class="fa-brands fa-linkedin"></i>
+            <i class="fa-brands fa-github"></i>
+          </div>
+        </div>
+      </div>
+    </section>
+  </footer>
+  <script type="module">
+    document.addEventListener("DOMContentLoaded", async () => {
+  const username = localStorage.getItem("username");
+
+  if (username) {
+    displayUserInfo(username); 
+    await loadOrderHistory(); 
+  } else {
+    setupLoginForm(); 
+  }
+});
+
+function setupLoginForm() {
+  document.querySelector("#login-form").addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const email = document.querySelector("#email").value.trim();
+    const password = document.querySelector("#password").value.trim();
+
+    try {
+      const response = await fetch("/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+        credentials: "include", // Ensure session cookie is sent.
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        localStorage.setItem("username", data.username);
+        alert(data.message);
+
+        if (data.isAdmin) {
+          window.location.href = "/admin/"; 
+        } else {
+          displayUserInfo(data.username);
+          await loadOrderHistory(); 
+        }
+      } else {
+        alert(data.message); 
+      }
+    } catch (error) {
+      console.error("Login failed:", error);
+      alert("An error occurred during login.");
+    }
+  });
+}
+
+function displayUserInfo(username) {
+  document.getElementById("login-form").style.display = "none";
+  const userInfo = document.getElementById("user-info");
+  userInfo.style.display = "block";
+  document.getElementById("username-display").textContent = username;
+
+  document.getElementById("logout-link").addEventListener("click", logout);
+}
+
+async function loadOrderHistory() {
+  const ordersContainer = document.getElementById("orders-container");
+  try {
+    const response = await fetch("/api/orders", { credentials: "include" });
+
+    if (!response.ok) {
+      if (response.status === 401) {
+        ordersContainer.innerHTML = `<p>Please log in to view your orders.</p>`;
+        return;
+      }
+      throw new Error(`Failed to fetch orders. Status: ${response.status}`);
+    }
+
+    const orders = await response.json();
+    if (orders.length === 0) {
+      ordersContainer.innerHTML = "<p>No orders found.</p>";
+      return;
+    }
+
+    ordersContainer.innerHTML = orders.map(order => `
+      <div class="order">
+        <p><strong>Order ID:</strong> ${order.id}</p>
+        <p><strong>Total Price:</strong> ₱${order.total_price.toFixed(2)}</p>
+        <p><strong>Status:</strong> ${order.status}</p>
+        <p><strong>Order Date:</strong> ${new Date(order.created_at).toLocaleDateString()}</p>
+        <div class="order-items">
+          <h4>Items:</h4>
+          ${order.order_items.map(item => `
+            <p><strong>Product:</strong> ${item.products.name}</p>
+            <p><strong>Quantity:</strong> ${item.quantity}</p>
+            <hr>
+          `).join("")}
+        </div>
+      </div>
+    `).join("");
+  } catch (error) {
+    console.error("Error loading orders:", error.message);
+    ordersContainer.innerHTML = `<p>Error loading orders: ${error.message}</p>`;
+  }
+}
+
+async function logout(event) {
+  event.preventDefault();
+  try {
+    const response = await fetch("/api/logout", {
+      method: "POST",
+      credentials: "include",
+    });
+
+    if (response.ok) {
+      localStorage.removeItem("username");
+      window.location.reload();
+    } else {
+      alert("Failed to log out.");
+    }
+  } catch (error) {
+    console.error("Error during logout:", error);
+    alert("An error occurred during logout.");
+  }
+}
+
+  </script>
+</body>
+
+</html>

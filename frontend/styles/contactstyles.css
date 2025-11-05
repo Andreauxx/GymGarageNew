@@ -1,0 +1,965 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.michroma-regular {
+  font-family: "Michroma", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+h1 {
+  font-family: Impact;
+  font-size: 200px;
+  font-weight: 10;
+  text-shadow: 5px 5px #000000;
+}
+
+.highlight {
+  color: red; 
+  font-family: Impact; 
+  text-shadow: 5px 5px #000000;
+}
+
+
+
+.logofont{
+  font-family: Impact;
+  font-size: 2rem;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+
+.promo-header {
+  background-color: #ff0000;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  font-size: 14px;
+  align-items: flex-end;
+}
+
+
+
+/* Adjust header styles */
+
+header {
+  width: 100%;
+  background-color: transparent;
+  color: #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.header-content {
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  padding: 25px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px; /* Space between logo and navigation */
+}
+
+.logo img {
+  width: 100px;
+  margin-right: 10px;
+}
+
+/* Navigation styles */
+nav {
+  width: 100%;
+}
+
+/* Top Navigation (Search and Right Items) */
+.nav-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-center, .nav-right {
+  display: flex;
+  align-items: center;
+}
+
+.nav-right a{
+  margin: 0 5px;
+}
+
+.nav-center {
+  flex-grow: 1;
+  justify-content: center;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  width: auto;
+  margin: 0 5px 5px 0px;
+}
+
+.search-input {
+  padding: 8px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  width: 58rem;
+}
+
+.search-button {
+  padding: 8px;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.search-button:hover {
+  background-color: darkred;
+}
+
+.search-button i {
+  font-size: 16px;
+}
+
+/* Bottom Navigation (Links) */
+.nav-bottom {
+  display: flex;
+  justify-content: center; 
+  list-style: none;
+  padding: 0;
+  margin: 10px 0px 0px 0px; 
+}
+
+.nav-bottom li {
+  margin: 0 15px;
+}
+
+/* General Navigation Styles */
+nav ul li a {
+  font-family: "Michroma", sans-serif;
+  text-decoration: none;
+  color: white;
+  transition: background-color 0.3s ease, transform 0.2s ease; 
+  display: inline-block;
+}
+
+nav ul li a:hover {
+  color: red;
+  transform: scale(1.2); /* Combine the transformations */
+  transform: translateY(-3px);
+}
+
+/* Cart icon styling */
+nav ul li i {
+  margin-right: 5px; /* Adjust spacing between the icon and the text */
+  font-size: 1.2rem;
+}
+
+/* Cart counter styling */
+.cart-counter {
+  background-color: #ff0000; /* Red background for visibility */
+  color: #fff;
+  font-size: 0.9rem;
+  padding: 2px 6px;
+  border-radius: 50%;
+  margin-left: 5px;
+}
+
+/* Line Separator */
+.custom-line {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: white;
+  box-sizing: border-box; /* Ensures the border is included in the width */
+}
+
+/* End of header Styles */
+
+
+
+.hero-section {
+  position: relative;
+  background-image: url("Images/BackgroundImage.webp"); 
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: rgb(161, 158, 158);
+  text-align: center;
+  z-index: 1; 
+}
+
+.hero-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom right,rgba(0, 0, 0, 0.856), rgba(0, 0, 0, 0.849), rgba(0, 0, 0, 0.979));
+  z-index: -1; 
+}
+
+.hero-section h1, .hero-section .cta-buttons {
+  position: relative;
+  z-index: 3; 
+}
+
+.cta-buttons {
+  margin-top: 20px;
+}
+
+.btn {
+  background-color: red; 
+  padding: 15px 30px;
+  text-decoration: none;
+  color: white;
+  margin: 0 10px;
+  border-radius: 5px;
+  font-size: 1.2em;
+  transition: background-color 0.3s ease, transform 0.6s ease; 
+  display: inline-block; 
+}
+
+.btn:hover {
+  background: black;
+    transform: translateY(-6px);
+  }
+
+
+
+
+/* Importing Google font - Open Sans */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.footer {
+  position: relative; 
+  max-width: auto;
+  width: 100%;
+  margin: auto; 
+  background: #000000;
+  padding: 50px 50px ; 
+}
+
+.footer .footer-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 3.5rem;
+}
+
+.footer-row .footer-col h4 {
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+.footer-col .links {
+  margin-top: 20px;
+}
+
+.footer-col .links li {
+  list-style: none;
+  margin-bottom: 10px;
+}
+
+.footer-col .links li a {
+  text-decoration: none;
+  color: #bfbfbf;
+}
+
+.footer-col .links li a:hover {
+  color: red;
+}
+
+.footer-col p {
+  margin: 20px 0;
+  color: #bfbfbf;
+  max-width: 300px;
+}
+
+.footer-col form {
+  display: flex;
+  gap: 5px;
+}
+
+
+
+.footer-col input {
+  height: 40px;
+  border-radius: 6px;
+  background: none;
+  width: 100%;
+  outline: none;
+  border: 1px solid red;
+  caret-color: #fff;
+  color: #fff;
+  padding-left: 10px;
+}
+
+.footer-col input::placeholder {
+  color: #ccc;
+}
+
+.footer-col form button {
+  background: #fff;
+  outline: none;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.2s ease;
+}
+
+.footer-col form button:hover {
+  background: #f80000;
+}
+
+.footer-col .icons {
+  display: flex;
+  margin-top: 30px;
+  gap: 30px;
+  cursor: pointer;
+}
+
+.footer-col .icons i {
+  color: #afb6c7;
+  font-size: 1.2rem; /* Slightly increase icon size */
+  transition: transform 0.5s ease, color 0.5s ease; /* Smooth transition for both color and rotation */
+}
+
+.footer-col .icons i:hover {
+  color: #f80000;
+  transform: rotate(360deg); /* Use rotate instead of rotate3d for simplicity */
+}
+
+
+/* Image Slider */
+/* Image Slider */
+
+.container {
+  padding: 0; /* Remove padding to make slider full-width */
+  margin: 0;
+}
+
+.slider-wrapper {
+  position: relative;
+  max-width: 100vw; /* Full width */
+  margin: 0 auto;
+  overflow: hidden; /* Ensure the images don't overflow */
+}
+
+.slider {
+  display: flex;
+  height: 60vh; /* Adjust height for banner-like appearance (60% of viewport height) */
+  max-height: 400px; /* Optional: Set a maximum height to avoid overly tall images */
+  width: 100vw; /* Full viewport width */
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  box-shadow: 0 1.5rem 3rem -0.75rem hsla(0, 0%, 0%, 0.25);
+  border-radius: 0; /* Remove border-radius for full-width layout */
+  -ms-overflow-style: none; /* Hide scrollbar IE and Edge */
+  scrollbar-width: none; /* Hide scrollbar Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.slider::-webkit-scrollbar {
+  display: none;
+}
+
+.slider img {
+  flex: 1 0 100%; /* Take full width of the container */
+  scroll-snap-align: start;
+  object-fit: cover; /* Ensure the image covers the entire container */
+  width: 100vw; /* Full width */
+  height: 100%; /* Fill the container's height */
+}
+
+/* Slider navigation */
+.slider-nav {
+  display: flex;
+  column-gap: 1rem;
+  position: absolute;
+  bottom: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.slider-nav a {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background-color: #fff;
+  opacity: 0.75;
+  transition: opacity ease 250ms;
+}
+
+.slider-nav a:hover {
+  opacity: 1;
+}
+
+/* Responsiveness: smaller screens */
+@media screen and (max-width: 768px) {
+  .slider {
+    height: 40vh; /* Reduce height for smaller screens */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .slider {
+    height: 30vh; /* Further reduce height for mobile */
+  }
+}
+
+
+
+
+
+/*Gym Essentials Cards*/
+
+.home-gym-essentials {
+  padding-left: 120px;
+  padding-top: 20px;
+  padding-right: 120px;
+  padding-bottom: 20px;
+  background-color: #000000;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.section-header h2 {
+  color: red;
+  font-size: 24px;
+}
+.view-all {
+  text-decoration: none;
+  color: red;
+  font-weight: bold;
+  transition: transform 0.6s ease; /* Smooth transition for text movement */
+  position: rel ative; /* For positioning the arrow */
+}
+
+/* Add arrow on hover */
+.view-all:hover {
+  transform: translateX(-30px); /* Move text to the left */
+  color: #fff;
+}
+
+.view-all i {
+  position: absolute;
+  opacity: 0; /* Initially invisible */
+  right: -30px; /* Positioning the arrow further away from the text */
+  transition: opacity 0.3s ease, right 0.3s ease; /* Smooth arrow appearance */
+  font-weight: bold; /* Make the arrow thicker */
+  font-size: 1.2em; /* Increase the size of the arrow */
+}
+
+/* Make arrow visible on hover */
+.view-all:hover i {
+  opacity: 1;
+  right: -25px; /* Move the arrow closer to the text */
+}
+
+/* Adjust grid to create dynamic layout */
+.essentials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+  grid-auto-rows: 200px;
+}
+
+.essentials-grid .category-card:nth-child(3) {
+  grid-column: span 1;
+  grid-row: span 1;
+}
+
+.category-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.category-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s ease;
+}
+
+.category-card:hover img {
+  transform: scale(1.1);
+}
+
+/* Adjust overlay to have text on the left */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.category-card:hover .overlay {
+  opacity: 1;
+}
+
+.overlay h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.shop-now-btn {
+  padding: 10px 20px;
+  background-color: red;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.shop-now-btn:hover {
+  background-color: #d10000;
+}
+
+/* Add responsiveness */
+@media screen and (max-width: 768px) {
+  .essentials-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .essentials-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+/* Product Offers */
+.product-offers {
+  z-index: 1;
+  padding: 20px 120px;
+  background-color: #000;
+  position: relative;
+  overflow: hidden; /* Prevent overflow */
+}
+
+.product-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.product-header h2 {
+  color: #f80000;
+}
+
+.product-essentials-grid {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding-bottom: 20px; /* Add padding to avoid scrollbar overlap */
+  -ms-overflow-style: none; /* Hide scrollbar IE and Edge */
+  scrollbar-width: none; /* Hide scrollbar Firefox */
+}
+
+.product-card {
+  max-width: 300px; /* Adjust as needed */
+  margin-right: 25px;
+  position: relative;
+  align-items: center;
+  height: 300px;
+  flex: 0 0 auto; /* Prevent shrinking */
+  object-fit: contain;
+}
+
+.product-card:last-child {
+  margin-right: 0; /* Remove margin from the last card */
+}
+
+.product-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  border-radius: 10px; /* Add rounded corners */
+}
+
+.product-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+  border-radius: 0 0 10px 10px; /* Match the rounded corners */
+}
+
+.product-overlay h3 {
+  margin: 0;
+}
+
+.shop-now-btn {
+  display: inline-block;
+  margin-top: 10px;
+  color: #fff;
+  text-decoration: none;
+  background-color: #f80000;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.shop-now-btn:hover {
+  background-color: #500505;
+}
+
+/* Left and Right Arrows */
+.navigation-arrows {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  transform: translateY(-50%);
+  z-index: 10; 
+  pointer-events: none;
+}
+
+.arrow-left, .arrow-right {
+  background-color: rgba(255, 255, 255, 0.6); /* Changed to white for better visibility */
+  padding: 20px;
+  color: black; /* Adjusted text color for contrast */
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  pointer-events: auto; /* Enable clicks on arrows */
+}
+
+.arrow-left:hover, .arrow-right:hover {
+  background-color: rgba(255, 255, 255, 0.8); /* Adjust hover effect for better contrast */
+}
+
+.arrow-left {
+  left: 30px; /* Adjusted to move it slightly inside */
+}
+
+.arrow-right {
+  right: 30px; /* Adjusted to move it slightly inside */
+}
+
+
+
+
+.section-title {
+  color: #d32f2f;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+/* Visit Our Stores Section */
+.stores-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fefefe;
+  padding: 20px;
+  margin-bottom: 40px;
+}
+
+.stores-container {
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+  align-items: flex-start;
+}
+
+.store-list {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.store-item {
+  padding: 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  position: relative;
+}
+
+.store-title {
+  font-size: 1.2rem;
+  color: #d32f2f;
+}
+
+.store-details,
+.store-contact {
+  font-size: 0.9rem;
+  color: #555;
+  display: none; /* Initially hide the details */
+}
+
+.toggle-details {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  font-size: 1.2rem;
+}
+
+.store-image {
+  flex: 1;
+}
+
+.store-image img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+/* Because We Care Section */
+.care-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fefefe;
+  padding: 20px;
+}
+
+.care-cards {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.care-card {
+  width: 30%;
+  background-size: cover;
+  background-position: center;
+  border-radius: 5px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+}
+
+.card-content {
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  padding: 20px;
+  width: 100%;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.card-text {
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+.card-button {
+  background-color: #d32f2f;
+  border: none;
+  color: #fff;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.card-button:hover {
+  background-color: #b71c1c;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .stores-container, .care-cards {
+      flex-direction: column;
+  }
+
+  .care-card {
+      width: 100%;
+      margin-bottom: 20px;
+  }
+
+
+/*Contact Us*/
+
+
+
+
+}.contact-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  width: 100%;
+  max-width: 1000px;
+  height: 500px;
+  margin: 0 auto;
+}
+
+
+.contacth2{
+  font-family: "Michroma", sans-serif;
+  color: red;
+  font-size: 20px;
+  text-shadow: 2px 2px 2px rgba(78, 78, 78, 0.5);
+  margin-bottom: 30px;
+}
+
+
+
+
+
+
+.contact-container {
+  width: auto;
+  padding: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  width: 100%;
+  max-width: 500px;
+}
+
+
+
+
+.contact-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contact-top, .contact-mid {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.field-pair {
+  display: flex;
+  flex-direction: column;
+  width: 48%; /* Adjust width to fit two pairs in one row */
+}
+
+.contact-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width:500px;
+  height: 300px;
+  align-self: center;
+
+}
+
+label {
+  font-family: "Arial";
+  align-self: start;
+  font-size: 16px;
+  color: white;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+input, textarea {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+input:hover{
+  border-color: red;
+
+}
+
+input::placeholder, textarea::placeholder {
+  text-align: start; 
+}
+
+textarea {
+  height: 100%; /* Ensure full height */
+  resize: none; /* Prevent resizing */
+}
+
+
+
+.sendmsg-btn{
+  width: 200px;
+  background-color: red;
+  align-self: center;
+  height: 30px;
+  color: white;
+  border-radius: 1px;
+  border-color: #555;
+}
+

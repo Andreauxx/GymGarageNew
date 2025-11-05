@@ -1,0 +1,199 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GymGarage</title>
+
+  <link rel="stylesheet" href="planstyles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css?_cacheOverride=1727368959427" />
+</head>
+
+<body __processed_fe7b299f-b7b0-4a66-aec3-3e9503c45fc3__="true">
+  <!-- Top promotional/offer header -->
+  <div class="promo-header">
+    <div class="contact">
+      <a href="contact">Contact Us</a>
+      <a href="#">Call Us!</a>
+      <a href="#">Get Quote</a>
+    </div>
+  </div>
+  <!-- Main navigation header -->
+  <main>
+    <div class="hero-section">
+      <!-- Move header inside hero-section -->
+      <header>
+        <div class="header-content">
+          <div class="logo">
+            <img src="Images/FinalLogo.png" alt="GymGarage Logo" />
+            <span class="logofont">GYMGARAGE</span>
+          </div>
+          <nav class="michroma-regular">
+            <ul>
+              <div class="nav-center">
+                <li><a href="/">Home</a></li>
+                <li><a href="shop">Shop</a></li>
+                <li><a href="plans">Plans</a></li>
+                <li><a href="coaches">Coaches</a></li>
+                <li><a href="about">About Us</a></li>
+              </div>
+              <div class="nav-right">
+                <li>
+                  <a href="cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    Cart <span class="cart-counter">0</span>
+                  </a>
+                </li>
+
+                <li>
+                  <a href="login">
+                    <i class="fas fa-user"></i>
+                  </a>
+                </li>
+              </div>
+            </ul>
+          </nav>
+        </div>
+        <hr class="custom-line" />
+      </header>
+
+      <section class="plans-section">
+        <h1>OUR MEMBERSHIP <span class="highlight">PLANS</span></h1>
+        <p class="description">
+          Choose the best plan that fits your fitness goals
+        </p>
+        <div class="plans-container">
+          <div class="plan-card basic-plan" data-plan-id="2">
+            <h2>Basic Plan</h2>
+            <p class="price">₱1,500/month</p>
+            <p class="access">
+              Access: Unlimited gym access during regular hours
+            </p>
+            <ul class="features">
+              <li>Access to all cardio and strength equipment</li>
+              <li>Participation in group fitness classes</li>
+              <li>Free fitness assessment upon joining</li>
+            </ul>
+            <button class="select-plan-btn">Choose Plan</button>
+          </div>
+          <div class="plan-card premium-plan" data-plan-id="3">
+            <h2>Premium Plan</h2>
+            <p class="price">₱2,500/month</p>
+            <p class="access">Access: 24/7 gym access</p>
+            <ul class="features">
+              <li>Everything in the Basic Plan, plus:</li>
+              <li>
+                Unlimited access to personal trainers (1 session per week)
+              </li>
+              <li>Free locker and towel service</li>
+              <li>Discount on fitness equipment purchases</li>
+            </ul>
+            <button class="select-plan-btn">Choose Plan</button>
+          </div>
+          <div class="plan-card elite-plan" data-plan-id="4">
+            <h2>Elite Plan</h2>
+            <p class="price">₱4,000/month</p>
+            <p class="access">
+              Access: 24/7 gym access with exclusive VIP perks
+            </p>
+            <ul class="features">
+              <li>Everything in the Premium Plan, plus:</li>
+              <li>Unlimited personal training sessions</li>
+              <li>Custom nutrition and workout plans</li>
+              <li>Priority booking for classes and equipment</li>
+              <li>Access to VIP lounge and recovery area</li>
+              <li>15% discount on all Gym Garage merchandise</li>
+            </ul>
+            <button class="select-plan-btn">Choose Plan</button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <section class="footer">
+      <div class="footer-row">
+        <div class="footer-col">
+          <h4>Company Info</h4>
+          <ul class="links">
+            <li><a href="about">About Us</a></li>
+            <li><a href="contact">Contact Us</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="faq">FAQs</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul class="links">
+            <li><a href="#">Equipment Catalog</a></li>
+            <li><a href="#">Membership Plans</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Testimonials</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul class="links">
+            <li><a href="terms">Terms of Service</a></li>
+            <li><a href="cancel">Privacy Policy</a></li>
+            <li><a href="refund">Refund Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Newsletter</h4>
+          <p>
+            Subscribe for updates on new equipment, promotions, and fitness
+            tips.
+          </p>
+          <form action="#" method="POST">
+            <input type="email" placeholder="Your email" required="" />
+            <button type="submit">SUBSCRIBE</button>
+          </form>
+          <div class="icons">
+            <i class="fa-brands fa-facebook-f"></i>
+            <i class="fa-brands fa-twitter"></i>
+            <i class="fa-brands fa-linkedin"></i>
+            <i class="fa-brands fa-github"></i>
+          </div>
+        </div>
+      </div>
+    </section>
+  </footer>
+
+  <!-- Load authdisplay.js with updated path -->
+  <script type="module">
+    import { updateCartCounter } from './database.js'; // Import as a module
+  
+    import './frontend/frontend_display_logics/authdisplay.js';  // Ensure import of main logic
+  
+    document.addEventListener('DOMContentLoaded', () => {
+        updateCartCounter();  // Use your imported function
+    });
+  </script>
+  
+  <script>
+    async function redirectToPlanCheckout(planId) {
+      try {
+        const sessionResponse = await fetch('/api/session', { credentials: 'include' });
+        if (!sessionResponse.ok) throw new Error('Not logged in');
+
+        window.location.href = `/plansCheckout?planId=${planId}`;
+      } catch (error) {
+        alert('Please log in to select a plan.');
+        window.location.href = '/login';
+      }
+    }
+
+    document.querySelectorAll('.plan-card').forEach(card => {
+      const planId = card.dataset.planId;
+      card.querySelector('.select-plan-btn').addEventListener('click', () => redirectToPlanCheckout(planId));
+    });
+  </script>
+</body>
+
+</html>

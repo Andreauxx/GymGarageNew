@@ -1,0 +1,333 @@
+
+/*HOME<script>
+    // Function to shuffle an array (Fisher-Yates shuffle)
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    }
+  
+    // Function to display products
+    function displayProducts(products) {
+      const productGrid = document.getElementById('scrollable-grid');
+      productGrid.innerHTML = ''; // Clear the grid
+  
+      products.forEach(product => {
+        const originalPrice = (!isNaN(parseFloat(product.original_price)))
+          ? parseFloat(product.original_price).toFixed(2)
+          : 'N/A';
+        const discountedPrice = (!isNaN(parseFloat(product.discounted_price)))
+          ? parseFloat(product.discounted_price).toFixed(2)
+          : null;
+        const discountPercentage = (typeof product.discount_percentage === 'number' && !isNaN(product.discount_percentage))
+          ? product.discount_percentage
+          : null;
+  
+        const priceDisplay = discountedPrice
+          ? `<span class="original-price">₱${originalPrice}</span> <span class="discounted-price">₱${discountedPrice}</span> <span class="discount-percentage">(${discountPercentage}% off)</span>`
+          : `<span class="price">₱${originalPrice}</span>`;
+  
+          const productCard = `
+  <div class="product-card">
+    ${product.discounted_price ? `<div class="save-banner">Save ₱${(product.original_price - product.discounted_price).toFixed(2)}</div>` : ''}
+    <img src="${product.image_url}" alt="${product.name}">
+    <h2>${product.name}</h2>
+    <div class="price-section">${priceDisplay}</div>
+    <button class="shop-now-btn">View Product</button>
+  </div>
+`;
+
+        productGrid.innerHTML += productCard;
+      });
+    }
+  
+    async function fetchProducts() {
+      try {
+        const response = await fetch('/api/products');
+        if (!response.ok) throw new Error('Network response was not ok');
+        const products = await response.json();
+        shuffleArray(products);
+        const limitedProducts = products.slice(0, 8);
+        displayProducts(limitedProducts);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    }
+  
+    document.addEventListener('DOMContentLoaded', fetchProducts);
+  </script>
+  
+  
+
+
+  <script>
+ document.addEventListener("DOMContentLoaded", function() {
+  const scrollableGrid = document.getElementById("scrollable-grid");
+  document.getElementById("arrow-left").addEventListener("click", () => {
+    scrollableGrid.scrollBy({ left: -300, behavior: "smooth" });
+  });
+  document.getElementById("arrow-right").addEventListener("click", () => {
+    scrollableGrid.scrollBy({ left: 300, behavior: "smooth" });
+  });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SHOP<script>
+  document.getElementById("price-range").addEventListener("input", updatePriceLabel);
+  document.getElementById("apply-filters").addEventListener("click", fetchProducts);
+
+  function updatePriceLabel() {
+    const price = document.getElementById("price-range").value;
+    document.getElementById("price-label").innerText = `₱0 - ₱${price}`;
+  }
+
+
+  async function fetchProducts() {
+    // Set up query parameters based on search and filters
+    const searchQuery = document.getElementById("search-input").value.trim();
+    const category = document.getElementById("category").value;
+    const price = document.getElementById("price-range").value;
+    const availability = document.getElementById("availability").value;
+
+    let query = `/api/products?`; // Adjust based on your API
+    if (searchQuery) query += `search=${searchQuery}&`;
+    if (category && category !== "all") query += `category=${category}&`;
+    if (price) query += `price=${price}&`;
+    if (availability && availability !== "all") query += `availability=${availability}`;
+
+    try {
+        const response = await fetch(query);
+        if (!response.ok) throw new Error('Failed to fetch products');
+        const products = await response.json();
+        displayShopProducts(products); // Call specific function for Shop page
+    } catch (error) {
+        console.error("Error fetching products:", error);
+    }
+}
+
+
+
+function displayShopProducts(products) {
+  const productGrid = document.getElementById("product-grid");
+  productGrid.innerHTML = ""; // Clear the grid
+
+  if (products.length === 0) {
+    console.log("No products found");
+    productGrid.innerHTML = "<p>No products found.</p>";
+  } else {
+    console.log("Displaying Products:", products); // Log products to verify if they're passed correctly
+    products.forEach((product) => {
+      const originalPrice = product.original_price
+        ? `₱${product.original_price}`
+        : null;
+      const discountedPrice = product.discounted_price
+        ? `₱${product.discounted_price}`
+        : null;
+      const priceDisplay = discountedPrice
+        ? `<span class="original-price">${originalPrice}</span> <span class="discounted-price">${discountedPrice}</span>`
+        : `<span class="price">₱${product.original_price}</span>`;
+
+      const productCard = `
+        <div class="product-card">
+          ${product.discounted_price ? `<div class="save-banner">Save ₱${(product.original_price - product.discounted_price).toFixed(2)}</div>` : ''}
+          <img src="${product.image_url}" alt="${product.name}">
+          <h2>${product.name}</h2>
+          <div class="price-section">${priceDisplay}</div>
+        <!-- Example product list with "Add to Cart" button -->
+        <button class="add-to-cart" data-product-id="123">Add to Cart</button>
+        </div>
+      `;
+      productGrid.innerHTML += productCard;
+    });
+  }
+}
+
+
+
+function addToCart(productId) {
+    if (!isLoggedIn()) {
+        alert("Please login to add items to the cart.");
+        window.location.href = "login";
+        return;
+    }
+
+    // Add product to cart logic here, assuming a token is required
+    const token = localStorage.getItem('token');
+    fetch(`/api/cart/add`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ productId }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert("Product added to cart successfully!");
+            updateCartCounter();
+        } else {
+            alert("Failed to add product to cart.");
+        }
+    })
+    .catch(error => console.error('Error adding to cart:', error));
+}
+
+function updateCartCounter() {
+    const cartCounter = document.querySelector(".cart-counter");
+    // Logic to update cart counter, possibly by fetching from the server
+    cartCounter.textContent = parseInt(cartCounter.textContent) + 1;
+}
+
+
+  document.addEventListener("DOMContentLoaded", fetchProducts);
+</script>*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+export async function isLoggedIn() {
+  try {
+    const response = await fetch('/api/cart', { method: 'GET' });
+    return response.ok; // True if response status is 200 OK
+  } catch (error) {
+    console.error("Error checking login status:", error);
+    return false; // Assume not logged in if there's an error
+  }
+}
+
+
+export function setupAddToCartButtons() {
+  const buttons = document.querySelectorAll('.add-to-cart');
+  buttons.forEach(button => {
+    button.addEventListener('click', async (event) => {
+      const loggedIn = await isLoggedIn();
+      if (!loggedIn) {
+        event.preventDefault();
+        alert("Please log in to add items to the cart.");
+        window.location.href = '/login'; // Redirect to login
+      } else {
+        const productId = button.getAttribute('data-product-id');
+        if (productId) {
+          const userId = localStorage.getItem('userId'); // Retrieve userId from local storage
+          if (userId) {
+            addToCart(userId, productId);
+          } else {
+            console.error("Error: userId not found in local storage.");
+          }
+        }
+      }
+    });
+  });
+}
+// authdisplay.js
+
+// Updated addToCart function to accept userId as a parameter
+export async function addToCart(userId, productId) {
+  try {
+    const response = await fetch('/api/cart/add', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ userId, productId }), // Pass userId in request
+    });
+
+    if (!response.ok) throw new Error('Failed to add item to cart');
+
+    const { cartCount } = await response.json(); // Update cart counter
+    document.querySelector('.cart-counter').textContent = cartCount;
+
+    alert('Product added to cart successfully!');
+  } catch (error) {
+    console.error('Error adding item to cart:', error.message);
+  }
+}
+
+
+async function logout() {
+  try {
+    const response = await fetch('/api/logout', { method: 'POST' });
+    if (response.ok) {
+      localStorage.removeItem('username');
+      alert("Logged out successfully");
+      window.location.href = "/login";
+    }
+  } catch (error) {
+    console.error("Error during logout:", error);
+  }
+}
+
+
+
+
+export async function updateCartCounter() {
+  try {
+    const response = await fetch('/api/cart/count');
+    if (response.ok) {
+      const { count } = await response.json();
+      const counter = document.querySelector('.cart-counter');
+      if (counter) counter.textContent = count;
+    }
+  } catch (error) {
+    console.error('Error updating cart counter:', error);
+  }
+}
+
+
+
+export async function checkout(userId) {
+  const { data: pendingOrder, error: findOrderError } = await supabase
+    .from('orders')
+    .select('*')
+    .eq('user_id', userId)
+    .eq('status', 'pending')
+    .single();
+
+  if (findOrderError) {
+    console.error('Error finding pending order:', findOrderError.message);
+    throw new Error('Error finding pending order');
+  }
+
+  if (!pendingOrder) {
+    throw new Error('No pending order found');
+  }
+
+  const { error: updateOrderError } = await supabase
+    .from('orders')
+    .update({ status: 'completed' })
+    .eq('id', pendingOrder.id);
+
+  if (updateOrderError) {
+    console.error('Error completing order:', updateOrderError.message);
+    throw new Error('Error completing order');
+  }
+
+  return { message: 'Checkout successful', orderId: pendingOrder.id };
+}

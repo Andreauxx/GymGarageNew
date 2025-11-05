@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shop | GymGarage</title>
+  <link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet" />
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+  <!-- Removed Lato font reference -->
+  <link rel="stylesheet" href="product.css" />
+  <script type="module" src="frontend/frontend_display_logics/products.js" defer></script>
+</head>
+
+<body>
+  <!-- Main Navigation -->
+  <nav class="main-nav">
+    <div class="logo">
+      <img src="Images/FinalLogo.png" alt="GymGarage Logo" />
+      <span class="logofont">GYMGARAGE</span>
+    </div>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="shop">Shop</a></li>
+      <li><a href="plans">Plans</a></li>
+      <li><a href="coaches">Coaches</a></li>
+      <li><a href="about">About Us</a></li>
+      <li>
+        <a href="cart">
+          <i class="fas fa-shopping-cart"></i>
+          Cart <span class="cart-counter">0</span>
+        </a>
+      </li>
+      <li>
+        <a href="login"> <i class="fas fa-user"></i>  </a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Breadcrumb -->
+  <section class="breadcrumb">
+    <p>
+      <a href="/">Home</a> / <a href="shop">Gym Equipment</a> /
+      Product Details
+    </p>
+  </section>
+
+  <!-- Product Details Section -->
+  <section class="product-details">
+    <div class="product-gallery">
+      <div class="main-img-wrapper">
+        <img src="/frontend/styles/Images/placeholder.jpg" alt="Main Product" class="main-img" />
+      </div>
+      <div class="thumbnail-images">
+        <img src="/frontend/styles/Images/placeholder.jpg" alt="Thumbnail 1" />
+        <img src="/frontend/styles/Images/placeholder.jpg" alt="Thumbnail 2" />
+      </div>
+    </div>
+    <div class="product-info">
+      <h1 id="product-name">NEW NordicTrack 1750 VS Commercial Treadmill</h1>
+      <div class="badge">20% OFF</div>
+      <div class="price">
+        <span class="discounted-price">160,999.00 PHP</span>
+        <span class="original-price">200,999.00 PHP</span>
+      </div>
+      <div class="installment-info">
+        <p>Or pay <strong>₱53,200 upfront</strong>, the rest in 12 months for only ₱13,023 with <a
+            href="#">billease</a>.</p>
+      </div>
+
+      <div class="quantity-selector">
+        <label for="quantity">Quantity</label>
+        <div class="quantity-controls">
+          <button class="quantity-btn" id="quantity-btn-decrease">-</button>
+          <input type="number" id="quantity" value="1" min="1" />
+          <button class="quantity-btn" id="quantity-btn-increase">+</button>
+        </div>
+      </div>
+
+      <div class="action-buttons">
+        <button class="add-to-cart" data-product-id="PRODUCT_ID">Add to Cart</button>
+        <button class="buy-now-btn">Buy it now</button>
+      </div>
+
+
+      <div class="trust-badge">
+        <img
+          src="https://img.freepik.com/premium-vector/money-back-guarantee-free-shipping-trust-badges-trust-badges-secure-ordering-easy-returns_526569-811.jpg">
+        <img
+          src="https://cdn.prod.website-files.com/623c314a1c4d047f6122244d/628459a65eb3b7b814cf3d9b_1*KvHBDTb5bJgMqQJ_wX0c7Q.png">
+      </div>
+
+      <div class="action-buttons">
+        <button class="ask-now-btn">Ask a Question</button>
+      </div>
+      <div class="share-section">
+        <span>Share:</span>
+        <a href="https://facebook.com/sharer/sharer.php?u=YOUR_PRODUCT_URL" target="_blank" class="share-icon"
+          aria-label="Share on Facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://twitter.com/intent/tweet?url=YOUR_PRODUCT_URL&text=Check+out+this+product!" target="_blank"
+          class="share-icon" aria-label="Share on Twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="https://pinterest.com/pin/create/button/?url=YOUR_PRODUCT_URL&media=PRODUCT_IMAGE_URL&description=YOUR_PRODUCT_DESCRIPTION"
+          target="_blank" class="share-icon" aria-label="Share on Pinterest">
+          <i class="fab fa-pinterest-p"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  </div>
+  </section>
+  <!-- Content Section -->
+  <section class="product-content">
+    <div id="description" class="content-section">
+      <h2>Description</h2>
+      <p>Loading description...</p>
+    </div>
+    <div id="shipping" class="content-section">
+      <h2>Shipping Information</h2>
+      <p>Our Shipping Terms
+        For deliveries within Davao City, delivery may take 2-10 business days. We set a longer duration because we want
+        to manage our customers’ expectations during this difficult time. However, your order/s might arrive earlier
+        than promised, as we’re working hard to make sure you get your equipment as quickly as possible. Ultimately, we
+        just do not want to let you down.
+
+        For orders outside Davao City, delivery takes 5-10 days. Orders outside our serviceable areas may incur
+        additional charges.
+
+        If you opt to pay via online bank transfer/bank deposit/GCash, kindly send us a screenshot of your online bank
+        transaction. To avoid cancellation, kindly secure your payment within two business days. Our email address:
+        payments.chrissports@gmail.com</p>
+    </div>
+    <div id="reviews" class="content-section">
+      <h2>Customer Reviews</h2>
+
+
+      <div class="rating-summary">
+        <h3>Average Rating</h3>
+        <div id="average-rating"></div>
+      </div>
+
+      <div class="rating-breakdown" id="rating-breakdown">
+        <!-- Dynamic breakdown will be injected here -->
+      </div>
+
+      <div id="review-list"></div>
+      <form id="review-form">
+        <textarea id="review-text" placeholder="Write a review..." required></textarea>
+        <input type="number" id="review-rating" min="1" max="5" placeholder="Rating (1-5)" required />
+        <button type="submit">Submit Review</button>
+      </form>
+    </div>
+  </section>
+
+
+
+
+
+    <footer>
+      <section class="footer">
+        <div class="footer-row">
+          <div class="footer-col">
+            <h4>Company Info</h4>
+            <ul class="links">
+              <li><a href="about">About Us</a></li>
+              <li><a href="contact">Contact Us</a></li>
+              <li><a href="#">Careers</a></li>
+              <li><a href="faq">FAQs</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Explore</h4>
+            <ul class="links">
+              <li><a href="#">Equipment Catalog</a></li>
+              <li><a href="#">Membership Plans</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Testimonials</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Legal</h4>
+            <ul class="links">
+              <li><a href="terms">Terms of Service</a></li>
+              <li><a href="cancel">Privacy Policy</a></li>
+              <li><a href="refund">Refund Policy</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Newsletter</h4>
+            <p>
+              Subscribe for updates on new equipment, promotions, and fitness
+              tips.
+            </p>
+            <form action="#" method="POST">
+              <input type="email" placeholder="Your email" required="" />
+              <button type="submit">SUBSCRIBE</button>
+            </form>
+            <div class="icons">
+              <i class="fa-brands fa-facebook-f"></i>
+              <i class="fa-brands fa-twitter"></i>
+              <i class="fa-brands fa-linkedin"></i>
+              <i class="fa-brands fa-github"></i>
+            </div>
+          </div>
+        </div>
+      </section>
+    </footer>
+
+      <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const quantityInput = document.getElementById("quantity");
+        const decreaseBtn = document.getElementById("quantity-btn-decrease");
+        const increaseBtn = document.getElementById("quantity-btn-increase");
+
+        if (!quantityInput || !decreaseBtn || !increaseBtn) {
+          console.error("Quantity buttons or input not found");
+          return;
+        }
+
+        // Decrease Quantity
+        decreaseBtn.addEventListener("click", () => {
+          const currentValue = parseInt(quantityInput.value, 10) || 1;
+          if (currentValue > 1) {
+            quantityInput.value = currentValue - 1;
+          }
+        });
+
+        // Increase Quantity
+        increaseBtn.addEventListener("click", () => {
+          const currentValue = parseInt(quantityInput.value, 10) || 1;
+          quantityInput.value = currentValue + 1;
+        });
+
+        // Prevent invalid input
+        quantityInput.addEventListener("input", (e) => {
+          if (e.target.value < 1) {
+            e.target.value = 1;
+          }
+        });
+
+        // Prevent non-numeric input
+        quantityInput.addEventListener("keypress", (e) => {
+          if (!/[0-9]/.test(e.key)) {
+            e.preventDefault();
+          }
+        });
+
+        console.log("Quantity script initialized successfully.");
+      });
+    </script>
+
+
+
+<script src="/frontend/frontend_display_logics/authdisplay.js" type="module"></script>
+
+
+
+    <script>
+      // Correctly fetch product ID from URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const productId = urlParams.get("id");
+
+      if (!productId) {
+        console.error("Product ID not found in URL.");
+        alert("Invalid product, returning to shop.");
+        window.location.href = "/shop.html";
+      }
+      console.log('Product ID:', productId);
+
+
+
+      async function fetchProductReviews() {
+        try {
+          const response = await fetch(`http://localhost:3000/api/products/${productId}/reviews`);
+          if (!response.ok) throw new Error('Failed to fetch reviews.');
+
+          const reviewsData = await response.json();
+
+          document.getElementById("average-rating").textContent = reviewsData.averageRating;
+
+          // Update reviews section
+          const reviewList = document.getElementById("review-list");
+          if (reviewsData.reviews.length) {
+            reviewList.innerHTML = reviewsData.reviews
+              .map(review => `<p><strong>${review.username}:</strong> ${review.comment_text}</p>`)
+              .join("");
+          } else {
+            reviewList.innerHTML = `<p>No reviews yet.</p>`;
+          }
+        } catch (error) {
+          console.error("Error fetching reviews:", error);
+        }
+      }
+
+
+
+
+
+
+
+      async function fetchProductDetails() {
+        try {
+          const response = await fetch(`http://localhost:3000/api/products/${productId}`);
+          if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+
+          const product = await response.json();
+
+
+           // Dynamically set product ID in Add to Cart button
+    const addToCartButton = document.querySelector('.add-to-cart');
+    if (addToCartButton) {
+      addToCartButton.setAttribute('data-product-id', product.id);
+    }
+    
+          // Ensure elements exist before trying to update them.
+          const mainImg = document.querySelector(".main-img");
+          const productName = document.getElementById("product-name");
+          const originalPrice = document.querySelector(".original-price");
+          const discountedPrice = document.querySelector(".discounted-price");
+          const stockStatus = document.getElementById("stock-status");
+          const descriptionEl = document.querySelector("#description p");
+          const thumbnailsContainer = document.querySelector(".thumbnail-images");
+
+          if (mainImg) mainImg.src = product.image_url;
+          if (productName) productName.textContent = product.name;
+          if (originalPrice) originalPrice.textContent = `₱${product.original_price}`;
+          if (discountedPrice) discountedPrice.textContent = `₱${product.discounted_price || "N/A"}`;
+          if (stockStatus) stockStatus.textContent = product.stock > 0 ? "In Stock" : "Out of Stock";
+          if (descriptionEl) descriptionEl.textContent = product.description || "No description available.";
+
+          if (thumbnailsContainer) {
+            const thumbnails = product.product_images.map(img => `<img src="${img.image_url}" alt="Thumbnail">`).join('');
+            thumbnailsContainer.innerHTML = thumbnails;
+          }
+
+          // Fetch and display reviews
+          fetchProductReviews();
+
+        } catch (error) {
+          console.error("Error displaying product details:", error);
+          const productDetailsSection = document.getElementById("product-details");
+          if (productDetailsSection) {
+            productDetailsSection.innerHTML = `<p>Failed to load product details. Please try again later.</p>`;
+          }
+        }
+      }
+
+      // Fetch related products by category
+      async function fetchRelatedProducts(category) {
+        const response = await fetch(`http://localhost:3000/api/products?category=${category}`);
+        const products = await response.json();
+        return products.filter(p => p.id !== productId); // Exclude current product
+      }
+
+      // Fetch reviews for the product
+      async function fetchReviews(productId) {
+        const response = await fetch(`http://localhost:3000/api/products/${productId}/reviews`);
+        return response.json();
+      }
+
+      // Tabs Logic
+      function activateTabs() {
+        document.querySelectorAll(".tab").forEach(tab => {
+          tab.addEventListener("click", () => {
+            document.querySelectorAll(".tab, .tab-pane").forEach(el => el.classList.remove("active"));
+            tab.classList.add("active");
+            document.getElementById(tab.dataset.tab).classList.add("active");
+          });
+        });
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        fetchProductDetails();
+        activateTabs();
+      });
+
+
+
+    
+
+
+    </script>
+
+
+
+<script>
+
+
+document.getElementById("review-form").addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const reviewText = document.getElementById("review-text").value;
+  const reviewRating = document.getElementById("review-rating").value;
+
+  try {
+    const response = await fetch(`http://localhost:3000/api/products/${productId}/reviews`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}` // Use actual token
+      },
+      body: JSON.stringify({ rating: reviewRating, comment_text: reviewText })
+    });
+
+    if (!response.ok) throw new Error('Failed to submit review');
+
+    alert('Review submitted!');
+    fetchProductReviews();  // Refresh reviews
+  } catch (error) {
+    console.error('Error submitting review:', error);
+  }
+});
+
+
+
+</script>
+
+
+
+<script type="module">
+  import { setupAddToCartButtons } from '/frontend/frontend_display_logics/authdisplay.js';
+
+  // Initialize Add to Cart buttons with login restriction
+  document.addEventListener('DOMContentLoaded', () => {
+    setupAddToCartButtons();
+  });
+</script>
+
+    <!-- Importing and running JavaScript modules -->
+    <script type="module">
+      import { shuffleArray, displayProducts } from '/frontend/frontend_display_logics/utils.js';
+      import { isLoggedIn, addToCart } from '/frontend/frontend_display_logics/authdisplay.js';
+
+      async function fetchHomeProducts() {
+        try {
+          const response = await fetch('/api/products');
+          if (!response.ok) throw new Error('Network response was not ok');
+          const products = await response.json();
+          shuffleArray(products);
+          const limitedProducts = products.slice(0, 8);
+          displayProducts(limitedProducts, 'scrollable-grid', addToCart);
+        } catch (error) {
+          console.error("Error fetching products:", error);
+        }
+      }
+    </script>
+</body>
+
+</html>

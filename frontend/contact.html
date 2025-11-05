@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GymGarage</title>
+    <link rel="stylesheet" href="contactstyles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Michroma&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Top promotional/offer header -->
+    <div class="promo-header">
+      <div class="contact">
+        <a href="contact">Contact Us</a>
+        <a href="#">Call Us!</a>
+        <a href="#">Get Quote</a>
+      </div>
+    </div>
+
+    <!-- Main navigation header -->
+
+    <main>
+      <div class="hero-section">
+        <!-- Move header inside hero-section -->
+        <header>
+          <div class="header-content">
+            <!-- Navigation Section -->
+            <nav class="michroma-regular">
+              <!-- Top Navigation: Search Bar and Right Elements -->
+              <ul class="nav-top">
+                <!-- Logo Section -->
+                <div class="logo">
+                  <img src="Images/FinalLogo.png" alt="GymGarage Logo" />
+                  <span class="logofont">GYMGARAGE</span>
+                </div>
+
+                <!-- Search bar integration -->
+                <div class="nav-center">
+                  <li class="search-container">
+                    <input
+                      type="text"
+                      placeholder="Search..."
+                      class="search-input"
+                    />
+                    <button class="search-button">
+                      <i class="fas fa-search"></i>
+                    </button>
+                  </li>
+                </div>
+
+                <!-- Right Navigation Items -->
+                <div class="nav-right">
+                  <li>
+                    <a href="#">
+                      <i class="fas fa-shopping-cart"></i>
+                      Cart <span class="cart-counter">0</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="login">
+                      <i class="fas fa-user"></i>
+                    </a>
+                  </li>
+                </div>
+              </ul>
+
+              <!-- Bottom Navigation: Links Section -->
+              <ul class="nav-bottom">
+              <li><a href="/">Home</a></li>
+              <li><a href="shop">Shop</a></li>
+              <li><a href="plans">Plans</a></li>
+              <li><a href="coaches">Coaches</a></li>
+              <li><a href="about">About Us</a></li>
+              </ul>
+            </nav>
+          </div>
+          <hr class="custom-line" />
+        </header>
+        <h2 class="contacth2">Contact Us</h2>
+        <div class="contact-form">
+           
+          <section class="contact-container">
+            <form class="contact-fields" action="#">
+              <div class="contact-top">
+                <div class="field-pair">
+                  <label for="Firstname">First Name</label>
+                  <input type="text" placeholder="First Name" required />
+                </div>
+                <div class="field-pair">
+                  <label for="LastName">Last Name</label>
+                  <input type="text" placeholder="Last Name" required />
+                </div>
+              </div>
+              <div class="contact-mid">
+                <div class="field-pair">
+                  <label for="Email">Email</label>
+                  <input type="email" placeholder="Your Email" required />
+                </div>
+                <div class="field-pair">
+                  <label for="Phone">Phone</label>
+                  <input type="text" placeholder="Your Phone Number" />
+                </div>
+              </div>
+              <div class="contact-bottom">
+                <label for="Comments">Inquiries, Questions & Comments</label>
+                <input
+                  type="text"
+                  placeholder="Inquiries, Questions & Comments"
+                />
+              </div>
+              <button class="sendmsg-btn">Send Message</button>
+            </form>
+          </section>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <section class="footer">
+        <div class="footer-row">
+          <div class="footer-col">
+            <h4>Company Info</h4>
+            <ul class="links">
+              <li><a href="about">About Us</a></li>
+              <li><a href="contact">Contact Us</a></li>
+              <li><a href="#">Careers</a></li>
+              <li><a href="faq">FAQs</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Explore</h4>
+            <ul class="links">
+              <li><a href="#">Equipment Catalog</a></li>
+              <li><a href="#">Membership Plans</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Testimonials</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Legal</h4>
+            <ul class="links">
+              <li><a href="terms">Terms of Service</a></li>
+              <li><a href="cancel">Privacy Policy</a></li>
+              <li><a href="refund">Refund Policy</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Newsletter</h4>
+            <p>
+              Subscribe for updates on new equipment, promotions, and fitness
+              tips.
+            </p>
+            <form action="#" method="POST">
+              <input type="email" placeholder="Your email" required="" />
+              <button type="submit">SUBSCRIBE</button>
+            </form>
+            <div class="icons">
+              <i class="fa-brands fa-facebook-f"></i>
+              <i class="fa-brands fa-twitter"></i>
+              <i class="fa-brands fa-linkedin"></i>
+              <i class="fa-brands fa-github"></i>
+            </div>
+          </div>
+        </div>
+      </section>
+    </footer>
+
+
+     
+        <!-- Load authdisplay.js with updated path -->
+        <script src="frontend/frontend_display_logics/authdisplay.js"></script>
+
+  </body>
+</html>

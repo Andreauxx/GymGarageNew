@@ -1,0 +1,740 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+  }
+
+
+/* Main Navigation Do not Touch*/
+.main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: black;
+  }
+  
+  .logo img {
+    width: 100px;
+  }
+  
+  .main-nav ul {
+    display: flex;
+    list-style: none;
+  }
+  
+  .main-nav ul li {
+    margin: 0 20px;
+  }
+  
+  .main-nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-family: "Michroma", sans-serif;
+  }
+  
+  .main-nav ul li a:hover {
+    color: red;
+  }
+  
+  .logofont {
+    font-family: Impact;
+    color: white;
+    font-size: 24px;
+  }
+  
+  .cart-counter {
+    background-color: #ff0000; /* Red background for visibility */
+    color: #fff;
+    font-size: 0.9rem;
+    padding: 2px 6px;
+    border-radius: 50%;
+    margin-left: 5px;
+  }
+
+  
+  .breadcrumb p {
+    margin: 20px;
+    font-size: 14px;
+  }
+  
+  .breadcrumb a {
+    text-decoration: none;
+    color: #007bff;
+  }
+  
+/* Main Navigation Do not Touch*/
+
+
+
+/* Product Offers DO NOT TOUCH */
+  .product-offers {
+    z-index: 1;
+    padding: 20px;
+    padding-left: 140px;
+    padding-right: 140px;
+    background-color: #000;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .product-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .product-header h2 {
+    color: #f80000;
+  }
+  .product-essentials-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding-bottom: 20px;
+    gap: 20px; /* Space between cards */
+  }
+  .product-card {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    justify-content: space-between; /* Ensure button stays at the bottom */
+    align-items: center; /* Center content horizontally */
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    width: 300px; /* Consistent card width */
+    height: 400px; /* Set a fixed height for uniformity */
+    padding: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .product-card img {
+    width: 100%;
+    height: 230px; /* Consistent image height */
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .product-card h2 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #e40505;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  
+  .price-section {
+    margin-bottom: auto; /* Push price to fill the space above the button */
+  }
+  
+  .original-price {
+    text-decoration: line-through;
+    color: grey;
+    font-size: 14px;
+  }
+  
+  .discounted-price {
+    color: red;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .add-to-cart-btn {
+    background-color: #f80000;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 80%;
+    font-weight: bold;
+    font-size: 14px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 15px; /* Add spacing from the price section */
+  }
+  
+  .add-to-cart-btn:hover {
+    background-color: #b71c1c;
+    transform: translateY(-2px);
+  }
+  
+  
+  .save-banner {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: red;
+    color: white;
+    font-size: 12px;
+    padding: 5px;
+    border-radius: 3px;
+  }
+  
+  .navigation-arrows {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px;
+  }
+  
+  .arrow-left, .arrow-right {
+    background-color: rgba(216, 6, 6, 0.6);
+    padding: 10px;
+    color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .arrow-left:hover, .arrow-right:hover {
+    background-color: #d32f2f;
+  }
+/* Product CARDS DO NOT TOUCH */
+
+
+
+
+
+
+/* Product Details Section */
+.product-details {
+  display: flex;
+  gap: 40px;
+  padding: 100px;
+  background-color: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.product-gallery {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-img-wrapper {
+  border: 1px solid #eaeaea;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.main-img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.thumbnail-images {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.thumbnail-images img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+.thumbnail-images img:hover {
+  border-color: #f80000;
+}
+
+.product-info {
+  flex: 1;
+}
+
+.product-info h1 {
+  font-size: 26px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.badge {
+  background-color: #f80000;
+  color: #fff;
+  display: inline-block;
+  padding: 5px 10px;
+  font-size: 14px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.price {
+  font-size: 22px;
+  margin: 15px 0;
+}
+
+.discounted-price {
+  color: #f80000;
+  font-weight: bold;
+}
+
+.original-price {
+  text-decoration: line-through;
+  margin-left: 10px;
+  color: #999;
+}
+
+.installment-info {
+  background: #f9f9f9;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.installment-info a {
+  color: #007bff;
+  text-decoration: underline;
+}
+
+.quantity-selector {
+  margin: 20px 0;
+}
+
+.quantity-selector label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.quantity-btn {
+  width: 30px;
+  height: 30px;
+  background: #f80000;
+  color: white;
+  border: none;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.quantity-btn:hover {
+  background: #b71c1c;
+}
+
+.quantity-controls input {
+  width: 50px;
+  text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.add-to-cart, .buy-now-btn, .ask-now-btn {
+  flex: 1;
+  padding: 15px 10px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.add-to-cart {
+  background-color: #f80000;
+  color: #fff;
+}
+
+.buy-now-btn, .ask-now-btn  {
+  background-color: #000;
+  color: #fff;
+}
+
+.add-to-cart:hover {
+  background-color: #b71c1c;
+}
+
+.buy-now-btn:hover, .ask-now-btn:hover  {
+  background-color: #333;
+}
+
+.trust-badge {
+  display: flex;
+  gap: 10px;
+ margin-left: 200px;
+  flex-direction: column;
+}
+
+.trust-badge img {
+  width: 500px;
+  height: auto;
+}
+
+
+.share-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 50px;
+}
+
+.share-section span {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+}
+
+.share-icon {
+  font-size: 18px;
+  color: #000;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.share-icon:hover {
+  color: #f80000;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Product Content Section Styling */
+/* Product Content Section Styling */
+.product-content {
+  padding: 40px 20px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  margin: 20px auto;
+  max-width: 1200px;
+}
+
+.content-section {
+  margin-top: 20px;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.content-section h2 {
+  font-size: 24px;
+  color: #f80000;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #f80000;
+  display: inline-block;
+}
+
+.content-section p {
+  font-size: 16px;
+  color: #555555;
+  line-height: 1.8;
+  margin-top: 10px;
+}
+
+/* Styling for the reviews list */
+#review-list {
+  margin-top: 15px;
+}
+
+.review {
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+}
+
+.review:last-child {
+  border-bottom: none;
+}
+
+.review strong {
+  color: #333;
+}
+
+.review span {
+  color: #ffcc00;
+}
+
+.review p {
+  margin: 5px 0;
+  color: #555;
+}
+
+#review-form {
+  margin-top: 20px;
+}
+
+#review-form textarea,
+#review-form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+
+
+
+.fas.fa-star {
+  color: #ddd; /* Light gray for empty stars */
+}
+
+.fas.fa-star.filled {
+  color: #ffc107; /* Gold for filled stars */
+}
+
+.rating-summary {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.breakdown-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.breakdown-item span {
+  display: inline-block;
+  font-size: 1rem;
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .product-content {
+    padding: 20px;
+  }
+
+  .content-section h2 {
+    font-size: 20px;
+  }
+
+  .content-section p {
+    font-size: 14px;
+  }
+
+  #review-form button {
+    width: 100%; /* Button spans full width on smaller screens */
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* Basic styling for tabs */
+.tabs {
+  display: flex;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.tab {
+  background: #f0f0f0;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.tab.active {
+  background: #f80000;
+  color: white;
+}
+
+.tab-content {
+  margin-top: 20px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tab-pane {
+  display: none;
+}
+
+.tab-pane.active {
+  display: block;
+}
+
+/* Reviews */
+#review-list {
+  margin-bottom: 20px;
+}
+
+#review-form textarea {
+  width: 100%;
+  height: 100px;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+#review-form button {
+  background: #f80000;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+/* Related Products */
+.related-products-grid {
+  display: flex;
+  gap: 20px;
+}
+
+.related-product-card {
+  background: #f4f4f4;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+
+/* Importing Google font - Open Sans */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.footer {
+  position: relative; 
+  max-width: auto;
+  width: 100%;
+  margin: auto; 
+  background: #000000;
+  padding: 50px 50px ; 
+}
+
+.footer .footer-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-right: 70px;
+  padding-left: 70px;
+  gap: 3.5rem;
+}
+
+.footer-row .footer-col h4 {
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+.footer-col .links {
+  margin-top: 20px;
+}
+
+.footer-col .links li {
+  list-style: none;
+  margin-bottom: 10px;
+}
+
+.footer-col .links li a {
+  text-decoration: none;
+  color: #bfbfbf;
+}
+
+.footer-col .links li a:hover {
+  color: red;
+}
+
+.footer-col p {
+  margin: 20px 0;
+  color: #bfbfbf;
+  max-width: 300px;
+}
+
+.footer-col form {
+  display: flex;
+  gap: 5px;
+}
+
+.footer-col input {
+  height: 40px;
+  border-radius: 6px;
+  background: none;
+  width: 100%;
+  outline: none;
+  border: 1px solid red;
+  caret-color: #fff;
+  color: #fff;
+  padding-left: 10px;
+}
+
+.footer-col input::placeholder {
+  color: #ccc;
+}
+
+.footer-col form button {
+  background: #fff;
+  outline: none;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.2s ease;
+}
+
+.footer-col form button:hover {
+  background: #f80000;
+}
+
+.footer-col .icons {
+  display: flex;
+  margin-top: 30px;
+  gap: 30px;
+  cursor: pointer;
+}
+
+.footer-col .icons i {
+  color: #afb6c7;
+  font-size: 1.2rem; /* Slightly increase icon size */
+  transition: transform 0.5s ease, color 0.5s ease; /* Smooth transition for both color and rotation */
+}
+
+.footer-col .icons i:hover {
+  color: #f80000;
+  transform: rotate(360deg); /* Use rotate instead of rotate3d for simplicity */
+}
+/*End of Footer Styling */

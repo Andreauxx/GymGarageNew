@@ -1,0 +1,533 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+  }
+
+
+
+/*MAIN NAVIGATION*/
+
+/* Main Navigation */
+.main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: black;
+  }
+  
+  .logo img {
+    width: 100px;
+  }
+  
+  .main-nav ul {
+    display: flex;
+    list-style: none;
+  }
+  
+  .main-nav ul li {
+    margin: 0 20px;
+  }
+  
+  .main-nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-family: "Michroma", sans-serif;
+  }
+  
+  .main-nav ul li a:hover {
+    color: red;
+  }
+  
+  .logofont {
+    font-family: Impact;
+    color: white;
+    font-size: 24px;
+  }
+  
+  .cart-counter {
+    background-color: #ff0000; /* Red background for visibility */
+    color: #fff;
+    font-size: 0.9rem;
+    padding: 2px 6px;
+    border-radius: 50%;
+    margin-left: 5px;
+  }
+
+
+
+  /*Cancellation*/
+  /* Cancellation Section Styles */
+.cancellation-details {
+  background-color: #fff;
+  padding: 40px 80px;
+  margin: 20px auto;
+  max-width: 1200px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+}
+
+.cancellation-container {
+  margin: 0 auto;
+}
+
+.cancellation-container h4 {
+  font-size: 28px;
+  color: #f80000;
+  margin-bottom: 20px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.cancellation-container p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: justify;
+}
+
+.cancellation-container ul {
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+.cancellation-container ul li {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #444;
+  padding: 5px 0;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 14px;
+  margin-bottom: 20px;
+  padding: 10px 40px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  text-align: left;
+}
+
+.breadcrumb a {
+  color: #f80000;
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+/* Highlight important content */
+.cancellation-container p strong {
+  color: #f80000;
+  font-weight: bold;
+}
+
+/* Style confirmation messages or warnings */
+.confirmation {
+  background-color: #f8f9fa;
+  border-left: 5px solid #f80000;
+  padding: 10px 20px;
+  margin: 20px 0;
+  color: #333;
+  font-weight: bold;
+}
+
+/* Button styles for actions */
+.cancellation-container a {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #f80000;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.cancellation-container a:hover {
+  background-color: darkred;
+}
+
+@media (max-width: 768px) {
+  .cancellation-details {
+    padding: 20px;
+  }
+
+  .breadcrumb {
+    padding: 10px;
+  }
+}
+
+
+/*terms and refund*/
+/* Terms and Refund Containers */
+.terms-container, .refund-container {
+  background-color: white;
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.terms-container h4, .refund-container h4 {
+  font-size: 32px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.terms-container h5, .refund-container h5 {
+  font-size: 24px;
+  color: #f80000;
+  margin-top: 15px;
+}
+
+.terms-container p, .refund-container p, .terms-container ul, .refund-container ul {
+  font-size: 16px;
+  color: #666;
+  line-height: 1.6;
+}
+
+ul {
+  list-style-type: square;
+  margin: 15px 0;
+  padding-left: 20px;
+}
+
+a.btn {
+  display: inline-block;
+  background-color: #f80000;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+a.btn:hover {
+  background-color: darkred;
+}
+
+
+
+
+
+
+
+  
+  .breadcrumb p {
+    margin: 20px;
+    font-size: 14px;
+  }
+  
+  .breadcrumb a {
+    text-decoration: none;
+    color: #007bff;
+  }
+  
+  .product-details {
+    display: flex;
+    gap: 50px;
+    padding: 50px;
+  }
+  
+  .product-gallery {
+    flex: 1;
+  }
+  
+  .main-img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+  
+  .thumbnail-images img {
+    width: 80px;
+    height: 80px;
+    border-radius: 5px;
+    margin: 10px 5px;
+    cursor: pointer;
+  }
+  
+  .product-info {
+    flex: 1;
+  }
+  
+  .product-info h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+  
+  .price {
+    font-size: 24px;
+  }
+  
+  .discounted-price {
+    color: red;
+  }
+  
+  .original-price {
+    text-decoration: line-through;
+    margin-left: 15px;
+  }
+  
+  .discount-percentage {
+    color: green;
+    margin-left: 10px;
+  }
+  
+  .stock-status p {
+    font-size: 18px;
+    color: #555;
+  }
+  
+  .sold-out-btn, .buy-now-btn {
+    width: 200px;
+    padding: 15px;
+    border: none;
+    margin: 20px 10px;
+    font-size: 16px;
+  }
+  
+  .sold-out-btn {
+    background-color: #ccc;
+    color: #333;
+  }
+  
+  .buy-now-btn {
+    background-color: black;
+    color: white;
+  }
+  
+  .delivery-options {
+    font-size: 14px;
+    margin-top: 15px;
+  }
+  
+  .secure-checkout img {
+    width: 200px;
+    margin-top: 10px;
+  }
+  
+  .notify-restock h4 {
+    margin: 20px 0;
+  }
+  
+  .notify-restock input {
+    padding: 10px;
+    width: 250px;
+    margin-right: 10px;
+  }
+  
+  .notify-btn {
+    padding: 10px 20px;
+    background-color: #f80000;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .related-products {
+    padding: 50px;
+  }
+  
+  .related-products h2 {
+    margin-bottom: 30px;
+  }
+  
+  .related-products-grid {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .related-product-card {
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    text-align: center;
+  }
+  
+  .related-product-card img {
+    width: 100px;
+    height: auto;
+    margin-bottom: 10px;
+  }
+  
+  .related-price {
+    color: red;
+    font-weight: bold;
+  }
+
+
+
+
+/* FAQ Container */
+.faq-container {
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-container h4 {
+    font-size: 32px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.faq-item {
+    margin-bottom: 20px;
+}
+
+.faq-item h5 {
+    font-size: 24px;
+    color: #f80000;
+    margin-bottom: 10px;
+}
+
+.faq-item p {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.faq-item a {
+    color: #f80000;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.faq-item a:hover {
+    text-decoration: underline;
+}
+
+
+
+  /*FOOTER*/
+
+  /* Footer */
+
+/* Importing Google font - Open Sans */
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
+}
+
+.footer {
+  position: relative;
+  max-width: auto;
+  width: 100%;
+  margin: auto;
+  background: #000000;
+  padding: 50px 50px;
+}
+
+.footer .footer-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 3.5rem;
+}
+
+.footer-row .footer-col h4 {
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+.footer-text{
+  color: #bfbfbf;
+  margin-top: 10px; 
+}
+
+.footer-col .links {
+  margin-top: 20px;
+}
+
+.footer-col .links li {
+  list-style: none;
+  margin-bottom: 10px;
+}
+
+.footer-col .links li a {
+  text-decoration: none;
+  color: #bfbfbf;
+}
+
+.footer-col .links li a:hover {
+  color: #ec0a0a;
+  transform: scale(1.2);
+}
+
+.footer-col p {
+  margin: 20px 0;
+  color: #bfbfbf;
+  max-width: 300px;
+}
+
+.footer-col form {
+  display: flex;
+  gap: 5px;
+}
+
+.footer-col input {
+  height: 40px;
+  border-radius: 6px;
+  background: none;
+  width: 100%;
+  outline: none;
+  border: 1px solid #ee1000;
+  caret-color: #fff;
+  color: #fff;
+  padding-left: 10px;
+}
+
+.footer-col input::placeholder {
+  color: #ccc;
+}
+
+.footer-col form button {
+  background: #fff;
+  outline: none;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.2s ease;
+}
+
+.footer-col form button:hover {
+  background: #cecccc;
+}
+
+.footer-col .icons {
+  display: flex;
+  margin-top: 30px;
+  gap: 30px;
+  cursor: pointer;
+}
+
+.footer-col .icons i {
+  color: #afb6c7;
+  font-size: 1.2rem; /* Slightly increase icon size */
+  transition: transform 0.5s ease, color 0.5s ease; /* Smooth transition for both color and rotation */
+}
+
+.footer-col .icons i:hover {
+  color: #f80000;
+  transform: rotate(360deg); /* Use rotate instead of rotate3d for simplicity */
+}

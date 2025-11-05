@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shopping Cart | GymGarage</title>
+  <link rel="stylesheet" href="cartstyle.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+</head>
+
+<body>
+  <!-- Header Section -->
+  <header class="promo-header">
+    <div class="contact">
+      <a href="contact">Contact Us</a>
+      <a href="#">Call Us!</a>
+      <a href="#">Get Quote</a>
+    </div>
+  </header>
+
+  <!-- Main Navigation -->
+  <nav class="main-nav">
+    <div class="logo">
+      <img src="Images/FinalLogo.png" alt="GymGarage Logo" />
+      <span class="logofont">GYMGARAGE</span>
+    </div>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="shop">Shop</a></li>
+      <li><a href="plans">Plans</a></li>
+      <li><a href="coaches">Coaches</a></li>
+      <li><a href="about">About Us</a></li>
+      <li>
+        <a href="cart">
+          <i class="fas fa-shopping-cart"></i>
+          Cart <span class="cart-counter">0</span>
+        </a>
+      </li>
+      <li>
+        <a href="login"> <i class="fas fa-user"></i> </a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Cart Container -->
+  <main class="cart-container">
+    <h1>Your Shopping Cart</h1>
+
+    <div class="cart-content">
+      <!-- Cart Items Section -->
+      <section class="cart-items">
+        <table class="styled-table">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Subtotal</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="cart-items-table">
+            <!-- Cart items will be dynamically loaded here -->
+            <tr>
+              <td>
+                <img src="path/to/product-image.jpg" alt="Product Image" class="product-image" />
+                <span>Product Name</span>
+              </td>
+              <td>₱25000</td>
+              <td>
+                <input type="number" min="1" value="1" class="quantity-input" />
+              </td>
+              <td>₱25000.00</td>
+              <td><button class="action-btn delete">Remove</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Summary Section -->
+      <aside class="cart-summary">
+        <h2>Order Summary</h2>
+        <div class="summary-detail">
+          <span>Subtotal:</span>
+          <span>₱<span id="cart-subtotal">0.00</span></span>
+        </div>
+        <div class="summary-detail">
+          <span>Shipping:</span>
+          <span>₱<span id="cart-shipping">0.00</span></span>
+        </div>
+        <div class="summary-total">
+          <strong>Total:</strong>
+          <strong>₱<span id="cart-total">0.00</span></strong>
+        </div>
+        <button class="checkout-btn" onclick="proceedToCheckout()">
+          Proceed to Checkout
+        </button>
+      </aside>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <section class="footer">
+      <div class="footer-row">
+        <div class="footer-col">
+          <h4>Company Info</h4>
+          <ul class="links">
+            <li><a href="about">About Us</a></li>
+            <li><a href="contact">Contact Us</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="faq">FAQs</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul class="links">
+            <li><a href="#">Equipment Catalog</a></li>
+            <li><a href="#">Membership Plans</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Testimonials</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul class="links">
+            <li><a href="terms">Terms of Service</a></li>
+            <li><a href="cancel">Privacy Policy</a></li>
+            <li><a href="refund">Refund Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Newsletter</h4>
+          <p>
+            Subscribe for updates on new equipment, promotions, and fitness
+            tips.
+          </p>
+          <form action="#" method="POST">
+            <input type="email" placeholder="Your email" required />
+            <button type="submit">SUBSCRIBE</button>
+          </form>
+          <div class="icons">
+            <i class="fa-brands fa-facebook-f"></i>
+            <i class="fa-brands fa-twitter"></i>
+            <i class="fa-brands fa-linkedin"></i>
+            <i class="fa-brands fa-github"></i>
+          </div>
+        </div>
+      </div>
+    </section>
+  </footer>
+
+  <!-- Load authdisplay.js with updated path -->
+  <script type="module" src="frontend/frontend_display_logics/authdisplay.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      console.log("Initializing cart operations...");
+
+      async function loadCartItems() {
+  console.log("Starting to load cart items...");
+  try {
+    const response = await fetch("/api/cart", {
+      method: "GET",
+      credentials: "include", // Include session cookies
+    });
+
+    if (!response.ok) {
+      if (response.status === 401) {  // Unauthorized access
+        try {
+          const errorData = await response.json();
+          if (errorData && errorData.redirect) {
+            window.location.href = errorData.redirect; // Redirect to login
+          } else {
+            console.error("Redirect URL missing in response");
+            alert("Unauthorized. Please log in.");
+            window.location.href = "/login"; // Fallback redirection
+          }
+        } catch (parseError) {
+          console.error("Error parsing 401 response:", parseError);
+          alert("Unauthorized. Redirecting to login.");
+          window.location.href = "/login"; // Fallback
+        }
+        return;
+      }
+      throw new Error(`Failed to fetch cart items: ${response.statusText}`);
+    }
+
+    const cartItems = await response.json();
+    console.log("Fetched cart items:", cartItems);
+
+    displayCartItems(cartItems); // Populate the table with fetched items
+  } catch (error) {
+    console.error("Error loading cart items:", error);
+  }
+}
+
+      // Display fetched cart items in the table
+      function displayCartItems(cartItems) {
+        const tableBody = document.getElementById("cart-items-table");
+        tableBody.innerHTML = ""; // Clear current table content
+
+        cartItems.forEach((item) => {
+          const row = `
+          <tr>
+            <td>
+              <img src="${item.products.image_url}" alt="${item.products.name
+            }" class="product-image">
+              <span>${item.products.name}</span>
+            </td>
+            <td>₱${item.products.discounted_price || item.products.original_price
+            }</td>
+            <td>
+              <input type="number" min="1" value="${item.quantity
+            }" class="quantity-input" data-product-id="${item.product_id}">
+            </td>
+            <td>₱${(
+              item.quantity *
+              (item.products.discounted_price || item.products.original_price)
+            ).toFixed(2)}</td>
+            <td>
+              <button class="action-btn delete" data-product-id="${item.product_id
+            }">Remove</button>
+            </td>
+          </tr>`;
+          tableBody.innerHTML += row;
+        });
+
+        updateCartTotal(cartItems);
+      }
+
+      // Update cart total
+      function updateCartTotal(cartItems) {
+        let subtotal = 0;
+        cartItems.forEach((item) => {
+          const productPrice =
+            item.products.discounted_price || item.products.original_price;
+          subtotal += item.quantity * productPrice;
+        });
+
+        document.getElementById("cart-subtotal").textContent =
+          subtotal.toFixed(2);
+        document.getElementById("cart-total").textContent =
+          subtotal.toFixed(2);
+        console.log("Cart total updated:", subtotal);
+      }
+
+      document.addEventListener("click", async (event) => {
+        if (event.target.classList.contains("delete")) {
+          const productId = event.target.getAttribute("data-product-id");
+          console.log(
+            `Attempting to remove item with Product ID: ${productId}`
+          );
+
+          try {
+            console.log("Sending request to /api/cart/remove...");
+            const response = await fetch("/api/cart/remove", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              credentials: "include",
+              body: JSON.stringify({ productId }),
+            });
+
+            if (!response.ok) {
+              console.log(`Server responded with status: ${response.status}`);
+              const errorMessage = await response.text();
+              console.error("Error response from server:", errorMessage);
+              throw new Error(errorMessage || "Failed to remove item");
+            }
+
+            console.log("Item removed successfully. Refreshing cart...");
+            // Directly remove the item from DOM for a smoother UX
+            event.target.closest("tr").remove();
+
+            // Update cart totals and counter
+            await loadCartItems(); // Ensure cart reflects correct backend state
+
+            updateCartCounter();
+          } catch (error) {
+            console.error(
+              "Error during item removal process:",
+              error.message
+            );
+            alert(`Failed to remove item: ${error.message}`);
+          }
+        }
+      });
+
+      async function proceedToCheckout() {
+        console.log("Redirecting to Checkout...");
+        // Redirect to the checkout page without modifying the cart
+        window.location.href = "/checkout"; // Adjust path if necessary
+      }
+
+      // Update cart counter
+      async function updateCartCounter() {
+        console.log("Updating cart counter...");
+        try {
+          const response = await fetch("/api/cart/count", {
+            credentials: "include",
+          });
+          if (response.ok) {
+            const { count } = await response.json();
+            console.log("Cart count fetched:", count);
+            document.querySelector(".cart-counter").textContent = count;
+          } else {
+            console.error("Failed to fetch cart count:", response.status);
+          }
+        } catch (error) {
+          console.error("Error updating cart counter:", error);
+        }
+      }
+
+      // Load cart items and counter on page load
+      await loadCartItems();
+
+      // Attach proceedToCheckout to the button
+      document
+        .querySelector(".checkout-btn")
+        .addEventListener("click", proceedToCheckout);
+
+      // Handle quantity update
+      document.addEventListener("input", async (event) => {
+        if (event.target.classList.contains("quantity-input")) {
+          const productId = event.target.getAttribute("data-product-id");
+          const newQuantity = parseInt(event.target.value);
+
+          console.log(
+            `Product ID: ${productId}, New Quantity: ${newQuantity}`
+          );
+
+          if (newQuantity > 0) {
+            try {
+              console.log("Sending quantity update request...");
+              const response = await fetch("/api/cart/update", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                credentials: "include",
+                body: JSON.stringify({ productId, quantity: newQuantity }),
+              });
+
+              console.log(`Update response status: ${response.status}`);
+              if (!response.ok) {
+                const errorMessage = await response.text();
+                throw new Error(errorMessage || "Failed to update quantity");
+              }
+
+              console.log("Quantity updated successfully. Reloading cart...");
+              await loadCartItems(); // Refresh items to show updated subtotal
+              await updateCartCounter();
+            } catch (error) {
+              console.error("Error updating quantity:", error.message);
+              alert(`Failed to update quantity: ${error.message}`);
+            }
+          } else {
+            alert("Quantity must be greater than zero.");
+          }
+        }
+      });
+    });
+
+
+
+  </script>
+</body>
+
+</html>
