@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "connect-redis": "^9.0.0",
+    "express-session": "^1.18.2",
+    "ioredis": "^5.8.2"
+  },
+  "devDependencies": {
+    "prettier": "^3.6.2"
+  }
+}

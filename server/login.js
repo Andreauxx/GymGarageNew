@@ -15,3 +15,8 @@ async function loginUser(email, password) {
         alert('Login failed');
     }
 }
+
+function isAdmin(req, res, next) {
+  if (req.session?.role === 'admin') return next();
+  return res.status(403).json({ message: 'Admins only' });
+}
