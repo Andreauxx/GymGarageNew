@@ -1,87 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Plan Checkout | GymGarage</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="checkoutstyles.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 </head>
+
 <body>
+  <!-- Top Bar -->
   <header>
     <div class="promo-header">
-      <a href="/">Home</a> | <a href="/plans">Plans</a>
+      <div class="contact">
+        <a href="contact">Contact Us</a>
+        <a href="#">Call Us!</a>
+        <a href="#">Get Quote</a>
+      </div>
     </div>
   </header>
 
+  <!-- Checkout Container -->
   <main class="checkout-container">
-    <h1>Checkout: <span id="plan-name"></span></h1>
+    <h1>Checkout</h1>
+    <div id="loading" class="loading">Loading your plan...</div>
 
-    <section class="invoice-section">
-      <h2>Invoice</h2>
-      <table class="invoice-table">
-        <tr>
-          <th>Plan</th>
-          <th>Price</th>
-          <th>Duration</th>
-        </tr>
-        <tr>
-          <td id="invoice-plan"></td>
-          <td id="invoice-price"></td>
-          <td id="invoice-duration"></td>
-        </tr>
-      </table>
-      <div class="invoice-total">
-        <p><strong>Total: ₱<span id="total-price"></span></strong></p>
-      </div>
-    </section>
+    <div id="checkout-content" class="hidden">
+      <section class="plan-summary">
+        <h2><span id="plan-name"></span></h2>
+        <p class="price">₱<span id="plan-price"></span></p>
+        <p class="duration"><strong>Duration:</strong> <span id="plan-duration"></span></p>
+      </section>
 
-    <form id="checkout-form">
-      <button type="submit" class="btn-order">Confirm Membership</button>
-      <button type="button" class="btn-cancel" onclick="window.location.href='/plans'">Cancel</button>
-    </form>
+      <section class="invoice-section">
+        <h2>Invoice</h2>
+        <table class="invoice-table">
+          <thead>
+            <tr>
+              <th>Plan</th>
+              <th>Price</th>
+              <th>Duration</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td id="invoice-plan"></td>
+              <td id="invoice-price"></td>
+              <td id="invoice-duration"></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="invoice-total">
+          <p><strong>Total: ₱<span id="total-price"></span></strong></p>
+        </div>
+      </section>
+
+      <form id="checkout-form" class="checkout-form">
+        <button type="submit" class="btn-order">Confirm Membership</button>
+        <button type="button" class="btn-cancel" onclick="window.location.href='/plans'">Cancel</button>
+      </form>
+    </div>
   </main>
 
+  <!-- Footer -->
   <footer>
     <section class="footer">
       <div class="footer-row">
-
-    
-
         <div class="footer-col">
           <h4>Company Info</h4>
           <ul class="links">
-            <li><a href="about"">About Us</a></li>
-              <li><a href="contact">Contact Us</a></li>
+            <li><a href="about">About Us</a></li>
+            <li><a href="contact">Contact Us</a></li>
             <li><a href="#">Careers</a></li>
             <li><a href="faq">FAQs</a></li>
           </ul>
         </div>
+
         <div class="footer-col">
           <h4>Explore</h4>
           <ul class="links">
-            <li><a href="#">Equipment Catalog</a></li>
-            <li><a href="#">Membership Plans</a></li>
+            <li><a href="shop">Shop</a></li>
+            <li><a href="plans">Membership Plans</a></li>
             <li><a href="#">Blog</a></li>
             <li><a href="#">Testimonials</a></li>
           </ul>
         </div>
+
         <div class="footer-col">
           <h4>Legal</h4>
           <ul class="links">
             <li><a href="terms">Terms of Service</a></li>
-            <li><a href="cancel">Privacy Policy</a></li>
+            <li><a href="privacy">Privacy Policy</a></li>
             <li><a href="refund">Refund Policy</a></li>
           </ul>
         </div>
+
         <div class="footer-col">
           <h4>Newsletter</h4>
           <p>
-            Subscribe for updates on new equipment, promotions, and fitness
-            tips.
+            Subscribe for updates on new equipment, promotions, and fitness tips.
           </p>
           <form action="#" method="POST">
-            <input type="email" placeholder="Your email" required="" />
+            <input type="email" placeholder="Your email" required />
             <button type="submit">SUBSCRIBE</button>
           </form>
           <div class="icons">
@@ -95,55 +119,289 @@
     </section>
   </footer>
 
+  <!-- JS -->
   <script>
-    document.addEventListener("DOMContentLoaded", async () => {
+    document.addEventListener('DOMContentLoaded', async () => {
       const urlParams = new URLSearchParams(window.location.search);
-      const planId = urlParams.get("planId");
+      const planId = urlParams.get('planId');
+      const loading = document.getElementById('loading');
+      const content = document.getElementById('checkout-content');
 
       if (!planId) {
-        alert("No plan selected.");
-        window.location.href = "/plans";
-        return;
+        alert('No plan selected.');
+        return (window.location.href = '/plans');
       }
 
       try {
-        const response = await fetch(`/api/plans/${planId}`, { credentials: "include" });
-        if (!response.ok) throw new Error("Failed to fetch plan details.");
+        const res = await fetch(`/api/plans/${planId}`, { credentials: 'include' });
+        if (!res.ok) throw new Error('Failed to fetch plan details');
 
-        const plan = await response.json();
-        document.getElementById("plan-name").textContent = plan.plan_name;
-        document.getElementById("invoice-plan").textContent = plan.plan_name;
-        document.getElementById("invoice-price").textContent = `₱${plan.price}`;
-        document.getElementById("invoice-duration").textContent = plan.duration;
-        document.getElementById("total-price").textContent = plan.price;
-      } catch (error) {
-        console.error("Error:", error);
-        alert("Failed to load plan details.");
-        window.location.href = "/plans";
+        const plan = await res.json();
+        loading.classList.add('hidden');
+        content.classList.remove('hidden');
+
+        document.getElementById('plan-name').textContent = plan.plan_name;
+        document.getElementById('plan-price').textContent = plan.price;
+        document.getElementById('plan-duration').textContent = plan.duration;
+        document.getElementById('invoice-plan').textContent = plan.plan_name;
+        document.getElementById('invoice-price').textContent = `₱${plan.price}`;
+        document.getElementById('invoice-duration').textContent = plan.duration;
+        document.getElementById('total-price').textContent = plan.price;
+      } catch (err) {
+        console.error('Error loading plan:', err);
+        alert('Failed to load plan details.');
+        window.location.href = '/plans';
       }
     });
-    document.getElementById("checkout-form").addEventListener("submit", async (event) => {
-  event.preventDefault();
-  const urlParams = new URLSearchParams(window.location.search);
-  const planId = urlParams.get("planId");
 
-  try {
-    const response = await fetch("/api/plans/checkout", {
-      method: "POST",
-      credentials: "include",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ planId })
+    document.getElementById('checkout-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const planId = new URLSearchParams(window.location.search).get('planId');
+      const btn = e.target.querySelector('.btn-order');
+      btn.disabled = true;
+      btn.textContent = 'Processing...';
+
+      try {
+        const res = await fetch('/api/plans/checkout', {
+          method: 'POST',
+          credentials: 'include',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ planId }),
+        });
+
+        if (!res.ok) throw new Error('Checkout failed');
+        alert('✅ Membership successfully activated!');
+        window.location.href = '/home';
+      } catch (err) {
+        console.error('Error during checkout:', err);
+        alert('Failed to activate membership.');
+        btn.disabled = false;
+        btn.textContent = 'Confirm Membership';
+      }
     });
-
-    if (!response.ok) throw new Error("Checkout failed.");
-    alert("Membership successfully activated!");
-    window.location.href = "/home";
-  } catch (error) {
-    console.error("Error during checkout:", error);
-    alert("Failed to activate membership.");
-  }
-});
-
   </script>
+
+  <!-- STYLE -->
+  <style>
+    body {
+      font-family: 'Michroma', sans-serif;
+      background-color: #0a0a0a;
+      color: white;
+      margin: 0;
+      padding: 0;
+    }
+
+    .promo-header {
+      background-color: #111;
+      text-align: center;
+      padding: 10px 0;
+    }
+
+    .promo-header a {
+      color: #ff0000;
+      margin: 0 10px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .promo-header a:hover {
+      color: white;
+    }
+
+    .checkout-container {
+      max-width: 800px;
+      margin: 60px auto;
+      background-color: #141414;
+      border-radius: 15px;
+      padding: 30px 40px;
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+    }
+
+    h1 {
+      text-align: center;
+      color: #ff0000;
+      margin-bottom: 40px;
+    }
+
+    .loading {
+      text-align: center;
+      font-size: 1.2rem;
+      color: #aaa;
+      padding: 2rem;
+    }
+
+    .plan-summary {
+      background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
+      border: 2px solid #ff0000;
+      border-radius: 15px;
+      padding: 25px;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .plan-summary h2 {
+      color: #ff0000;
+      margin-bottom: 10px;
+    }
+
+    .plan-summary .price {
+      font-size: 1.6rem;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .invoice-section h2 {
+      color: #ff0000;
+      margin-bottom: 15px;
+    }
+
+    .invoice-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+      color: white;
+    }
+
+    .invoice-table th,
+    .invoice-table td {
+      border-bottom: 1px solid #333;
+      text-align: center;
+      padding: 12px;
+    }
+
+    .invoice-total {
+      text-align: right;
+      font-size: 1.2rem;
+      color: #ff0000;
+      font-weight: bold;
+    }
+
+    .checkout-form {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .btn-order, .btn-cancel {
+      padding: 15px 25px;
+      font-size: 16px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn-order {
+      background: #ff0000;
+      color: white;
+      font-weight: bold;
+    }
+
+    .btn-order:hover {
+      background: #c90000;
+    }
+
+    .btn-cancel {
+      background: #333;
+      color: #bbb;
+      margin-left: 15px;
+    }
+
+    .btn-cancel:hover {
+      background: #555;
+      color: white;
+    }
+
+    /* ===== Footer Styling ===== */
+    footer {
+      background-color: #0a0a0a;
+      padding: 50px 80px;
+      margin-top: 80px;
+      border-top: 1px solid #222;
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .footer-col {
+      flex: 1;
+      min-width: 220px;
+      margin: 20px;
+    }
+
+    .footer-col h4 {
+      color: #ff0000;
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer-col ul li a {
+      color: #ccc;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-col ul li a:hover {
+      color: #ff0000;
+    }
+
+    .footer-col p {
+      color: #bbb;
+      margin-bottom: 15px;
+    }
+
+    .footer-col form {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .footer-col input[type="email"] {
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      flex: 1;
+    }
+
+    .footer-col button {
+      background-color: #ff0000;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 15px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .footer-col button:hover {
+      background-color: #c90000;
+    }
+
+    .icons {
+      margin-top: 15px;
+    }
+
+    .icons i {
+      color: #ccc;
+      margin-right: 10px;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .icons i:hover {
+      color: #ff0000;
+    }
+  </style>
 </body>
 </html>

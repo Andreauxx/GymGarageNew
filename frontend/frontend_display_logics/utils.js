@@ -1,11 +1,11 @@
 // utils.js
 export function formatPrice(price) {
-    return new Intl.NumberFormat('en-PH', {
-      style: 'currency',
-      currency: 'PHP',
-      minimumFractionDigits: 2
-    }).format(price);
-  }
+  return new Intl.NumberFormat('en-PH', {
+    style: 'currency',
+    currency: 'PHP',
+    minimumFractionDigits: 2
+  }).format(price);
+}
   
   export function calculateDiscount(originalPrice, discountedPrice) {
     return ((originalPrice - discountedPrice) / originalPrice * 100).toFixed(0);
@@ -17,60 +17,44 @@ export function formatPrice(price) {
     return token && parseJwt(token);
   }
   
-  // JWT parser // Decided not to use this anymore had a hard time putting the token in the header
-  function parseJwt(token) {
-    try {
-      const base64Url = token.split('.')[1];
-      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-      const jsonPayload = decodeURIComponent(atob(base64).split('').map(c =>
-        '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
-      ).join(''));
-      return JSON.parse(jsonPayload);
-    } catch (e) {
-      return null;
-    }
+  
+// 🎨 Display Products
+export function displayProducts(products, containerId, onAddToCart) {
+  const grid = document.getElementById(containerId);
+  if (!grid) return console.warn(`Container ${containerId} not found`);
+  grid.innerHTML = '';
+
+  if (!products || !products.length) {
+    grid.innerHTML = '<p>No products found.</p>';
+    return;
   }
-  
-  // Product display functionality
-  export function displayProducts(products, containerId, onAddToCart) {
-    const productGrid = document.getElementById(containerId);
-    productGrid.innerHTML = '';
-  
-    if (!products.length) {
-      productGrid.innerHTML = '<p>No products available.</p>';
-      return;
-    }
-  
-    products.forEach(product => {
-      const originalPrice = product.original_price ? `₱${parseFloat(product.original_price).toFixed(2)}` : 'N/A';
-      const discountedPrice = product.discounted_price ? `₱${parseFloat(product.discounted_price).toFixed(2)}` : originalPrice;
-      const priceDisplay = product.discounted_price
-        ? `<span class="original-price">${originalPrice}</span> <span class="discounted-price">${discountedPrice}</span>`
-        : `<span class="price">${originalPrice}</span>`;
-  
-      const productCard = document.createElement('div');
-      productCard.className = 'product-card';
-      productCard.innerHTML = `
-        <a href="/product.html?id=${product.id}">
-          ${product.discounted_price ? `<div class="save-banner">Save ₱${(product.original_price - product.discounted_price).toFixed(2)}</div>` : ''}
-          <img src="${product.image_url}" alt="${product.name}">
-          <h2>${product.name}</h2>
-          <div class="price-section">${priceDisplay}</div>
-        </a>
-        <button class="add-to-cart" data-product-id="${product.id}">Add to Cart</button>
-      `;
-      productGrid.appendChild(productCard);
-  
-      productCard.querySelector('.add-to-cart').addEventListener('click', () => {
-        if (isLoggedIn()) {
-          onAddToCart(product.id);
-        } else {
-          alert("Please log in to add items to the cart.");
-          window.location.href = '/login';
-        }
-      });
-    });
-  }
+
+  products.forEach((product) => {
+    const original = formatPrice(product.original_price || 0);
+    const discounted = product.discounted_price
+      ? formatPrice(product.discounted_price)
+      : original;
+
+    const card = document.createElement('div');
+    card.className = 'product-card';
+    card.innerHTML = `
+      <a href="/product.html?id=${product.id}">
+        ${product.discounted_price ? `<div class="save-banner">Save ${calculateDiscount(product.original_price, product.discounted_price)}%</div>` : ''}
+        <img src="${product.image_url}" alt="${product.name}" />
+        <h2>${product.name}</h2>
+        <div class="price-section">
+          ${product.discounted_price ? `<span class="original-price">${original}</span><span class="discounted-price">${discounted}</span>` : `<span class="price">${original}</span>`}
+        </div>
+      </a>
+      <button class="add-to-cart" data-id="${product.id}">Add to Cart</button>
+    `;
+    grid.appendChild(card);
+
+    card.querySelector('.add-to-cart').addEventListener('click', () =>
+      onAddToCart(product.id)
+    );
+  });
+}
   
 
 
@@ -93,28 +77,33 @@ export function shuffleArray(array, maxNameLength = 30) {
 
 
   
-  // Cart functionality
-  export async function addToCart(productId) {
-    const token = localStorage.getItem('token');
-    if (!token) throw new Error('Not authenticated');
-  
+ // 🛒 Add to Cart (session-based)
+export async function addToCart(productId) {
+  try {
     const response = await fetch('/api/cart/add', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      },
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
       body: JSON.stringify({ productId })
     });
-  
+
     if (!response.ok) {
-      const error = await response.json();
-      throw new Error(error.message || 'Failed to add to cart');
+      const err = await response.json();
+      throw new Error(err.message || 'Failed to add to cart.');
     }
-  
-    return response.json();
+
+    const result = await response.json();
+    await updateCartCounter();
+    alert('Product added to cart!');
+    return result;
+  } catch (error) {
+    console.error('Add to cart error:', error);
+    if (error.message.includes('Unauthorized')) {
+      window.location.href = '/login';
+    }
   }
-  
+}
+
   // Update cart counter in navigation
   export async function updateCartCounter() {
     const token = localStorage.getItem('token');

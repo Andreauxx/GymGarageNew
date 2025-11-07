@@ -165,35 +165,54 @@
     </section>
   </footer>
 
-  <!-- Load authdisplay.js with updated path -->
-  <script type="module">
-    import { updateCartCounter } from './database.js'; // Import as a module
-  
-    import './frontend/frontend_display_logics/authdisplay.js';  // Ensure import of main logic
-  
-    document.addEventListener('DOMContentLoaded', () => {
-        updateCartCounter();  // Use your imported function
-    });
-  </script>
-  
-  <script>
-    async function redirectToPlanCheckout(planId) {
-      try {
-        const sessionResponse = await fetch('/api/session', { credentials: 'include' });
-        if (!sessionResponse.ok) throw new Error('Not logged in');
+<script type="module">
+  async function loadPlans() {
+    try {
+      const res = await fetch('/api/plans', { credentials: 'include' });
+      if (!res.ok) throw new Error('Failed to load plans');
+      const plans = await res.json();
 
-        window.location.href = `/plansCheckout?planId=${planId}`;
-      } catch (error) {
-        alert('Please log in to select a plan.');
-        window.location.href = '/login';
-      }
+      const container = document.querySelector('.plans-container');
+      container.innerHTML = '';
+
+      plans.forEach(plan => {
+        const card = document.createElement('div');
+        card.className = 'plan-card';
+        card.dataset.planId = plan.id;
+        card.innerHTML = `
+          <h2>${plan.plan_name}</h2>
+          <p class="price">₱${plan.price.toLocaleString()}</p>
+          <p class="access">Duration: ${plan.duration}</p>
+          ${plan.benefits ? `<p>${plan.benefits}</p>` : ''}
+          <button class="select-plan-btn">Choose Plan</button>
+        `;
+        container.appendChild(card);
+
+        card.querySelector('.select-plan-btn').addEventListener('click', () =>
+          redirectToPlanCheckout(plan.id)
+        );
+      });
+    } catch (err) {
+      console.error('Error loading plans:', err);
+      document.querySelector('.plans-container').innerHTML =
+        '<p>Failed to load membership plans. Please try again later.</p>';
     }
+  }
 
-    document.querySelectorAll('.plan-card').forEach(card => {
-      const planId = card.dataset.planId;
-      card.querySelector('.select-plan-btn').addEventListener('click', () => redirectToPlanCheckout(planId));
-    });
-  </script>
+  async function redirectToPlanCheckout(planId) {
+    try {
+      const sessionResponse = await fetch('/api/session', { credentials: 'include' });
+      if (!sessionResponse.ok) throw new Error('Not logged in');
+      window.location.href = `/plansCheckout?planId=${planId}`;
+    } catch {
+      alert('Please log in to select a plan.');
+      window.location.href = '/login';
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', loadPlans);
+</script>
+
 </body>
 
 </html>

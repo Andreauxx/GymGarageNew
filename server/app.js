@@ -142,6 +142,45 @@ app.post('/api/login', async (req, res) => {
 });
 
 
+
+
+
+// Get orders for the logged-in user
+app.get('/api/orders', async (req, res) => {
+  const userId = req.session.userId;
+
+  if (!userId) {
+    return res.status(401).json({ message: 'Unauthorized: Please log in.' });
+  }
+
+  try {
+    const { data: orders, error } = await supabase
+      .from('orders')
+      .select(`
+        id,
+        total_price,
+        status,
+        created_at,
+        order_items (
+          quantity,
+          products (name)
+        )
+      `)
+      .eq('user_id', userId)
+      .order('created_at', { ascending: false });
+
+    if (error) throw error;
+
+    res.status(200).json(orders);
+  } catch (error) {
+    console.error('Error fetching user orders:', error.message);
+    res.status(500).json({ message: 'Failed to fetch orders.' });
+  }
+});
+
+
+
+
 // Signup (session-only, no fake token)
 app.post('/api/signup', async (req, res) => {
   const { f_name, l_name, username, address, number, email, password, role = 'user' } = req.body;
@@ -310,7 +349,16 @@ app.post('/api/checkout', async (req, res) => {
 
 // Multer + validation
 const upload = multer({
-  storage: multer.memoryStorage(),
+  storage: multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, path.join(__dirname, '../frontend/uploads'));
+    },
+    filename: (req, file, cb) => {
+      const ext = path.extname(file.originalname);
+      const filename = `${Date.now()}-${Math.round(Math.random() * 1e9)}${ext}`;
+      cb(null, filename);
+    },
+  }),
   limits: { fileSize: 2 * 1024 * 1024 },
 });
 function allowImages(req, res, next) {
@@ -366,52 +414,77 @@ app.get('/api/products/:id', async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
-
 app.post('/api/products', upload.single('image_file'), allowImages, async (req, res) => {
   try {
-    const { name, original_price, discounted_price, category, stock, image_url, description } = req.body;
-    const additionalImages = normalizeExtraImages(req.body.extra_images);
+    const imageUrl = req.file ? `/uploads/${req.file.filename}` : req.body.image_url || null;
+
+    const { name, original_price, discounted_price, category, stock, description } = req.body;
 
     const { data: product, error } = await supabase
       .from('products')
-      .insert({ name, original_price, discounted_price, category, stock, image_url, description, extra_images: additionalImages })
+      .insert({
+        name,
+        original_price,
+        discounted_price,
+        category,
+        stock,
+        image_url: imageUrl,
+        description,
+      })
       .select()
       .single();
 
-    if (error) return res.status(500).json({ message: 'Error saving product', details: error.message });
-    return res.status(201).json({ message: 'Product added successfully', product });
+    if (error) throw error;
+    res.status(201).json({ message: 'Product added successfully', product });
   } catch (error) {
+    console.error('Error saving product:', error.message);
     res.status(500).json({ message: 'Error saving product', error: error.message });
   }
 });
 
+
 app.put('/api/products/:id', upload.single('image_file'), allowImages, async (req, res) => {
   try {
-    const { name, original_price, discounted_price, category, stock, image_url, description } = req.body;
-    const additionalImages = normalizeExtraImages(req.body.extra_images);
+    const imageUrl = req.file ? `/uploads/${req.file.filename}` : req.body.image_url || null;
+
+    const { name, original_price, discounted_price, category, stock, description } = req.body;
 
     const { data: product, error } = await supabase
       .from('products')
-      .update({ name, original_price, discounted_price, category, stock, image_url, description, extra_images: additionalImages })
+      .update({
+        name,
+        original_price,
+        discounted_price,
+        category,
+        stock,
+        image_url: imageUrl,
+        description,
+      })
       .eq('id', req.params.id)
       .select()
       .single();
 
-    if (error) return res.status(500).json({ message: 'Error updating product', details: error.message });
-    return res.status(200).json({ message: 'Product updated successfully', product });
+    if (error) throw error;
+    res.status(200).json({ message: 'Product updated successfully', product });
   } catch (error) {
+    console.error('Error updating product:', error.message);
     res.status(500).json({ message: 'Error updating product', error: error.message });
   }
 });
 
+
+
 app.delete('/api/products/:id', async (req, res) => {
   try {
     await deleteProductFromDatabase(req.params.id);
+    console.log('✅ Product deleted:', req.params.id);
     res.status(200).json({ message: 'Product deleted successfully' });
   } catch (error) {
+    console.error('❌ Error deleting product:', error.message);
     res.status(500).json({ message: 'Error deleting product', error: error.message });
   }
 });
+
 
 // ======= MEMBERSHIP =======
 app.get('/plansCheckout', (req, res) => {
@@ -462,9 +535,19 @@ app.get('/api/plans/:id', async (req, res) => {
 
 function calculateExpiryDate(duration) {
   const now = new Date();
-  if (duration === 'monthly') now.setMonth(now.getMonth() + 1);
-  else if (duration === 'yearly') now.setFullYear(now.getFullYear() + 1);
-  else throw new Error('Invalid plan duration');
+  if (!duration) throw new Error('Missing plan duration');
+
+  // Normalize for safer matching
+  const normalized = duration.toString().toLowerCase().trim();
+
+  if (normalized.includes('month')) {
+    now.setMonth(now.getMonth() + 1);
+  } else if (normalized.includes('year')) {
+    now.setFullYear(now.getFullYear() + 1);
+  } else {
+    throw new Error('Invalid plan duration');
+  }
+
   return now.toISOString();
 }
 
@@ -515,6 +598,13 @@ app.post('/api/products/:id/reviews', isAuthenticated, async (req, res) => {
     return res.status(500).json({ message: 'Server error' });
   }
 });
+
+app.get('/api/plans', async (req, res) => {
+  const { data, error } = await supabase.from('membership_plans').select('*');
+  if (error) return res.status(500).json({ message: error.message });
+  res.json(data);
+});
+
 
 
 // ======= ADMIN =======
@@ -637,13 +727,21 @@ app.get('/api/admin/metrics', async (req, res) => {
   }
 });
 
+// ✅ Serve the main admin shell
+app.get(['/admin', '/admin/*'], (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend', 'admin.html'));
+});
+
+// ✅ Serve admin subpages (dashboard, products, etc.)
+app.use('/admin_settings', express.static(path.join(__dirname, '../frontend/admin_settings')))
+
 // ======= STATIC + PAGES =======
 app.use(express.static(path.join(__dirname, 'frontend')));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/frontend', express.static(path.join(__dirname, '../frontend')));
 app.use('/styles', express.static(path.join(__dirname, '../frontend/styles')));
 app.get('/product.html', (req, res) => res.sendFile(path.join(__dirname, '../frontend/product.html')));
-
+app.use('/uploads', express.static(path.join(__dirname, '../frontend/uploads')));
 // HTML routing
 app.use('/', pagesRouter);
 
@@ -652,3 +750,6 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
+
+

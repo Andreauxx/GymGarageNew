@@ -71,50 +71,59 @@ function clearForm() {
 }
 
 export async function submitProductForm(event) {
-    event.preventDefault();
-    console.log("Submitting product form...");
-  
-    const name = document.getElementById("product-name").value;
-    const original_price = parseFloat(document.getElementById("product-original-price").value) || 0;
-    const discounted_price = parseFloat(document.getElementById("product-discounted-price").value) || 0;
-    const category = document.getElementById("product-category").value;
-    const description = document.getElementById("product-description").value;
-    const stock = parseInt(document.getElementById("product-stock").value) || 0;
-    const imageUrl = document.getElementById("product-image-url").value;
-    const extraImages = document.getElementById("product-extra-images").value
-        .split(",")
-        .map(url => url.trim())
-        .filter(url => url);
-  
-    const formData = new FormData();
-    formData.append("name", name);
-    formData.append("original_price", original_price);
-    formData.append("discounted_price", discounted_price);
-    formData.append("category", category);
-    formData.append("description", description);
-    formData.append("stock", stock);
-    if (imageUrl) formData.append("image_url", imageUrl);
-    formData.append("extra_images", JSON.stringify(extraImages));
-  
-    const method = editingProductId ? 'PUT' : 'POST';
-    const url = editingProductId ? `/api/products/${editingProductId}` : '/api/products';
-  
-    try {
-      const response = await fetch(url, { method, body: formData });
-      if (response.ok) {
-        console.log("Product saved successfully");
-        hideProductForm();
-        loadProducts();
-        editingProductId = null; // Reset after saving
-      } else {
-        const errorResponse = await response.json();
-        console.error("Failed to save product:", errorResponse.message || errorResponse);
-        alert("Failed to save product. Check console for details.");
-      }
-    } catch (error) {
-      console.error("Error saving product:", error);
-    }
+  event.preventDefault();
+  console.log("Submitting product form...");
+
+  const name = document.getElementById("product-name").value;
+  const original_price = parseFloat(document.getElementById("product-original-price").value) || 0;
+  const discounted_price = parseFloat(document.getElementById("product-discounted-price").value) || 0;
+  const category = document.getElementById("product-category").value;
+  const description = document.getElementById("product-description").value;
+  const stock = parseInt(document.getElementById("product-stock").value) || 0;
+  const imageUrl = document.getElementById("product-image-url").value;
+  const imageFile = document.getElementById("product-image-file").files[0]; // ✅ get the file
+  const extraImages = document.getElementById("product-extra-images").value
+    .split(",")
+    .map(url => url.trim())
+    .filter(url => url);
+
+  const formData = new FormData();
+  formData.append("name", name);
+  formData.append("original_price", original_price);
+  formData.append("discounted_price", discounted_price);
+  formData.append("category", category);
+  formData.append("description", description);
+  formData.append("stock", stock);
+
+  // ✅ attach the file if selected
+  if (imageFile) {
+    formData.append("image_file", imageFile);
+  } else if (imageUrl) {
+    formData.append("image_url", imageUrl);
   }
+
+  formData.append("extra_images", JSON.stringify(extraImages));
+
+  const method = editingProductId ? "PUT" : "POST";
+  const url = editingProductId ? `/api/products/${editingProductId}` : "/api/products";
+
+  try {
+    const response = await fetch(url, { method, body: formData });
+    if (response.ok) {
+      console.log("Product saved successfully");
+      hideProductForm();
+      loadProducts();
+      editingProductId = null;
+    } else {
+      const errorResponse = await response.json();
+      console.error("Failed to save product:", errorResponse.message || errorResponse);
+      alert("Failed to save product. Check console for details.");
+    }
+  } catch (error) {
+    console.error("Error saving product:", error);
+  }
+}
+
   
   export async function editProduct(id) {
     console.log(`Editing product with ID: ${id}`);
