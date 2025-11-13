@@ -660,94 +660,158 @@ nav ul li i {
   .product-header h2 {
     color: #f80000;
   }
-  .product-essentials-grid {
-    display: flex;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    padding-bottom: 20px;
-    gap: 20px; /* Space between cards */
-  }
-  .product-card {
-    display: flex;
-    flex-direction: column; /* Stack items vertically */
-    justify-content: space-between; /* Ensure button stays at the bottom */
-    align-items: center; /* Center content horizontally */
-    background-color: white;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    width: 300px; /* Consistent card width */
-    height: 500px; /* Set a fixed height for uniformity */
-    padding: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    position: relative;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .product-card img {
-    width: 100%;
-    height: 260px; /* Consistent image height */
-    object-fit: cover;
-    border-radius: 5px;
-    margin-bottom: 10px;
-  }
-  
-  .product-card h2 {
-    font-size: 16px;
-    font-weight: bold;
-    color: #e40505;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-  }
-  
-  .price-section {
-    margin-bottom: auto; /* Push price to fill the space above the button */
-  }
-  
-  .original-price {
-    text-decoration: line-through;
-    color: grey;
-    font-size: 14px;
-  }
-  
-  .discounted-price {
-    color: red;
-    font-size: 18px;
-    font-weight: bold;
-  }
-  
-  .add-to-cart,
-  .add-to-cart-btn {
-    background-color: #f80000;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 100%;
-    font-weight: bold;
-    font-size: 14px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    margin-top: 15px;
-  }
-  
-  .add-to-cart:hover {
-    background-color: #b71c1c;
-    transform: translateY(-2px);
-  }
-  
-  
-  .save-banner {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background-color: red;
-    color: white;
-    font-size: 12px;
-    padding: 5px;
-    border-radius: 3px;
-  }
-  
+
+
+/* Ensure cards scroll horizontally */
+/* === Product Scroll Container === */
+.product-essentials-grid {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  gap: 25px;
+  padding: 20px 0;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: #ff0000 #000;
+}
+
+.product-essentials-grid::-webkit-scrollbar {
+  height: 8px;
+}
+.product-essentials-grid::-webkit-scrollbar-thumb {
+  background-color: #ff0000;
+  border-radius: 10px;
+}
+.product-essentials-grid::-webkit-scrollbar-track {
+  background: #111;
+}
+
+/* === Product Card (Clickable <a>) === */
+.product-card {
+  flex: 0 0 270px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background: #0e0e0e;
+  border: 2px solid #ff0000;
+  border-radius: 15px;
+  text-align: center;
+  text-decoration: none !important; /* hard kill underline */
+  color: #ffffff !important; /* force white text */
+  box-shadow: 0 5px 10px rgba(255, 0, 0, 0.15);
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+  padding-bottom: 20px;
+  cursor: pointer;
+}
+
+/* 🔒 enforce white text on all link states */
+.product-card:link,
+.product-card:visited,
+.product-card:hover,
+.product-card:active {
+  color: #ffffff !important;
+  text-decoration: none !important;
+}
+
+/* hover lift */
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 18px rgba(255, 0, 0, 0.35);
+}
+
+/* === Image === */
+.product-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.product-card:hover img {
+  transform: scale(1.08);
+}
+
+/* === Save Banner === */
+.save-banner {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: #ff0000;
+  color: #fff;
+  font-size: 13px;
+  font-weight: bold;
+  padding: 6px 10px;
+  border-radius: 5px;
+  z-index: 2;
+}
+
+/* === Product Title === */
+.product-title {
+  margin: 15px 0 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #ffffff !important;
+}
+
+/* === Price Section === */
+.price-section {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.original-price {
+  text-decoration: line-through;
+  color: #888;
+  font-size: 0.9rem;
+}
+
+.discounted-price {
+  color: #ff4444;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+/* === Add to Cart Button === */
+.add-to-cart-btn {
+  background: linear-gradient(90deg, #ff0000, #c40000);
+  color: white !important;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  width: 80%;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: all 0.3s ease;
+  display: block;
+  text-decoration: none;
+}
+
+.add-to-cart-btn:hover {
+  background: linear-gradient(90deg, #c40000, #ff0000);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 0, 0, 0.5);
+}
+
+/* kill focus outlines & blue states */
+.add-to-cart-btn:focus,
+.add-to-cart-btn:active {
+  outline: none;
+  color: white;
+  text-decoration: none;
+}
+
+
+
+
+
   .navigation-arrows {
     position: relative;
     display: flex;
@@ -1245,6 +1309,33 @@ html {
     font-size: 16px; /* Adjust heading size */
   }
 
+
+/* ===== FIX: Footer links visibility ===== */
+.footer-col .links li a {
+  color: #bfbfbf !important; /* light gray */
+  text-decoration: none !important;
+}
+
+.footer-col .links li a:hover {
+  color: #ff0000 !important; /* red on hover */
+}
+
+  /* ===== FIX: Restore footer subscribe button color ===== */
+.footer-col form button {
+  background: #fff !important;
+  color: #000 !important;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.footer-col form button:hover {
+  background: #f80000 !important;
+  color: #fff !important;
+}
 
   .nav-top {
     flex-direction: column;
