@@ -2,7 +2,7 @@
 
 import { createClient } from '@supabase/supabase-js';
 import dotenv from 'dotenv';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 // If you stick with sessions, you don't need JWT here. Remove if unused.
 // import jwt from 'jsonwebtoken';
 

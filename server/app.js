@@ -1,6 +1,6 @@
 import express from 'express';
 import session from 'express-session';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import path from 'path';
 import multer from 'multer';
 import { fileURLToPath } from 'url';
@@ -32,6 +32,7 @@ const __dirname = path.dirname(__filename);
 app.use(cors({ origin: 'http://localhost:5173', credentials: true }));
 app.use(express.json());
 
+// Sessions (Redis)
 // Sessions (Redis)
 const useRedis = process.env.USE_REDIS === 'true' || Boolean(process.env.REDIS_URL);
 
@@ -84,18 +85,6 @@ if (useRedis) {
   }));
 }
 
-
-  session({
-    secret: process.env.SESSION_SECRET || 'fallback_secret',
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-      secure: process.env.NODE_ENV === 'production',
-      httpOnly: true,
-      sameSite: 'lax',
-      maxAge: 24 * 60 * 60 * 1000,
-    },
-  });
 
 // Auth guard
 function isAuthenticated(req, res, next) {
